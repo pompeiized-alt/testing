@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#1d4ed8">
+<title>Jetzt Abitur! – Deine Abi-Vorbereitung</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{font-family:'Inter',sans-serif;margin:0;background:#f8fafc;color:#0f172a}
+body.dark{background:#0f172a;color:#f1f5f9}
+.card{background:#fff;border-radius:16px;box-shadow:0 1px 4px rgba(0,0,0,.08),0 4px 16px rgba(0,0,0,.04)}
+body.dark .card{background:#1e293b}
+.btn-blue{background:#1d4ed8;color:#fff;border:none;border-radius:12px;padding:13px 24px;font-weight:700;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+.btn-blue:hover{background:#1e40af;transform:translateY(-1px);box-shadow:0 6px 20px rgba(29,78,216,.35)}
+.btn-gray{background:#f1f5f9;color:#374151;border:none;border-radius:12px;padding:13px 24px;font-weight:700;font-size:15px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;gap:8px;transition:all .2s}
+.btn-gray:hover{background:#e2e8f0}
+body.dark .btn-gray{background:#334155;color:#e2e8f0}
+.btn-sm{padding:6px 14px;border-radius:8px;font-size:12px;font-weight:700;cursor:pointer;border:none;transition:all .2s}
+.btn-blue-sm{background:#1d4ed8;color:#fff}
+.btn-red-sm{background:#fee2e2;color:#dc2626}
+body.dark .btn-red-sm{background:rgba(220,38,38,.2);color:#fca5a5}
+.nav-item{display:flex;flex-direction:column;align-items:center;padding:6px 4px;cursor:pointer;border:none;background:none;min-width:52px;transition:all .2s}
+.nav-icon{width:42px;height:42px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;transition:all .2s}
+.nav-item.active .nav-icon{background:rgba(29,78,216,.12)}
+body.dark .nav-item.active .nav-icon{background:rgba(96,165,250,.15)}
+.pbar{height:8px;background:#e2e8f0;border-radius:4px;overflow:hidden}
+.pfill{height:100%;border-radius:4px;background:linear-gradient(90deg,#3b82f6,#1d4ed8);transition:width .5s ease}
+body.dark .pbar{background:#334155}
+.grade-inp{height:34px;border:1.5px solid #e2e8f0;border-radius:8px;text-align:center;font-weight:700;font-size:13px;outline:none;background:#fff;color:#0f172a;width:44px}
+.grade-inp:focus{border-color:#1d4ed8;box-shadow:0 0 0 3px rgba(29,78,216,.1)}
+body.dark .grade-inp{background:#0f172a;border-color:#334155;color:#f1f5f9}
+.wide-inp{width:100%;padding:10px 14px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:14px;outline:none;background:#fff;color:#0f172a}
+body.dark .wide-inp{background:#0f172a;border-color:#334155;color:#f1f5f9}
+.hero-bg{background:linear-gradient(135deg,#1e3a8a 0%,#1d4ed8 50%,#3b82f6 100%)}
+.flip-container{perspective:1000px}
+.flipper{position:relative;transform-style:preserve-3d;transition:transform .5s cubic-bezier(.4,0,.2,1)}
+.flipper.flipped{transform:rotateY(180deg)}
+.flip-front,.flip-back{position:absolute;width:100%;backface-visibility:hidden;-webkit-backface-visibility:hidden}
+.flip-back{transform:rotateY(180deg)}
+.no-scroll::-webkit-scrollbar{display:none}
+.no-scroll{-ms-overflow-style:none;scrollbar-width:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:translateY(0)}}
+.fade-up{animation:fadeUp .3s ease}
+.bubble-ai{background:#dbeafe;color:#1e3a8a;border-radius:16px 16px 16px 4px;padding:12px 16px;font-size:14px;line-height:1.6;max-width:82%;white-space:pre-wrap}
+.bubble-user{background:#1d4ed8;color:#fff;border-radius:16px 16px 4px 16px;padding:12px 16px;font-size:14px;line-height:1.6;max-width:82%;margin-left:auto}
+body.dark .bubble-ai{background:#1e3a8a;color:#bfdbfe}
+.badge{display:inline-flex;align-items:center;padding:2px 10px;border-radius:100px;font-size:11px;font-weight:700}
+.b-blue{background:#dbeafe;color:#1d4ed8}.b-green{background:#dcfce7;color:#15803d}
+.b-orange{background:#fef3c7;color:#b45309}.b-red{background:#fee2e2;color:#dc2626}
+.b-purple{background:#f3e8ff;color:#7c3aed}.b-gray{background:#f1f5f9;color:#64748b}
+body.dark .b-blue{background:rgba(29,78,216,.3);color:#93c5fd}
+body.dark .b-green{background:rgba(21,128,61,.2);color:#86efac}
+body.dark .b-gray{background:#334155;color:#94a3b8}
+.modal-bg{position:fixed;inset:0;background:rgba(0,0,0,.55);z-index:200;display:flex;align-items:center;justify-content:center;padding:20px;backdrop-filter:blur(4px)}
+.modal-box{background:#fff;border-radius:20px;width:100%;max-width:440px;max-height:88vh;overflow-y:auto;padding:28px}
+body.dark .modal-box{background:#1e293b}
+.hm-dot{width:18px;height:18px;border-radius:4px}
+input[type=range]{-webkit-appearance:none;width:100%;height:6px;border-radius:3px;background:#e2e8f0;outline:none}
+input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:18px;height:18px;background:#1d4ed8;border-radius:50%;cursor:pointer}
+.lk-badge{padding:3px 10px;border-radius:8px;font-size:11px;font-weight:800;cursor:pointer;border:1.5px solid;transition:all .2s;white-space:nowrap}
+.lk-on{background:#dbeafe;color:#1d4ed8;border-color:#1d4ed8}
+.lk-off{background:#f1f5f9;color:#94a3b8;border-color:#e2e8f0}
+body.dark .lk-off{background:#334155;border-color:#475569}
+.lesson-section{margin-bottom:18px}
+.lesson-section h4{font-weight:700;font-size:15px;margin-bottom:8px;color:#1d4ed8}
+body.dark .lesson-section h4{color:#60a5fa}
+.formula-table{width:100%;border-collapse:collapse;font-size:13px;margin:8px 0}
+.formula-table th{background:#eff6ff;padding:8px 10px;text-align:left;font-weight:700;font-size:12px}
+body.dark .formula-table th{background:#1e3a8a}
+.formula-table td{padding:8px 10px;border-top:1px solid #f1f5f9}
+body.dark .formula-table td{border-color:#334155}
+.formula-table tr:hover td{background:#f8fafc}
+body.dark .formula-table tr:hover td{background:rgba(255,255,255,.03)}
+.example-box{background:#f0fdf4;border-left:4px solid #16a34a;padding:12px 14px;border-radius:0 10px 10px 0;margin:8px 0}
+body.dark .example-box{background:rgba(22,163,74,.1)}
+.tip-box{background:#fef3c7;border-left:4px solid #d97706;padding:12px 14px;border-radius:0 10px 10px 0;margin:8px 0}
+body.dark .tip-box{background:rgba(217,119,6,.1)}
+.afb-1{background:#dcfce7;color:#15803d}
+.afb-2{background:#fef3c7;color:#b45309}
+.afb-3{background:#fee2e2;color:#dc2626}
+body.dark .afb-1{background:rgba(21,128,61,.25);color:#86efac}
+body.dark .afb-2{background:rgba(180,83,9,.2);color:#fcd34d}
+body.dark .afb-3{background:rgba(220,38,38,.2);color:#fca5a5}
+.tab-btn{padding:8px 16px;border-radius:10px;border:none;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap;transition:all .2s}
+.tab-btn.active{background:#1d4ed8;color:#fff}
+.tab-btn.inactive{background:#f1f5f9;color:#64748b}
+body.dark .tab-btn.inactive{background:#334155;color:#94a3b8}
+.calc-subject-row{display:flex;align-items:center;gap:6px;padding:10px 12px;border-radius:12px;margin-bottom:8px;border:1.5px solid #e2e8f0;background:#fff}
+body.dark .calc-subject-row{background:#1e293b;border-color:#334155}
+select.wide-inp{cursor:pointer}
+</style>
+</head>
+<body>
+<div id="app"></div>
+<script src="https://unpkg.com/@supabase/supabase-js@2"></script>
+<script>
+var SUPABASE_URL = 'https://dawhzjvcrjfchjunhpko.supabase.co/rest/v1/';
+var SUPABASE_ANON_KEY = 'sb_publishable_qt2JYzlYw7F1wLNs9hmrzQ_H_ghYXyU';
+var sb = (SUPABASE_URL.indexOf('PASTE_') === -1)
+  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
+  : null;
+
+// ==================== STATE ====================
+var S = {
+  page:'landing', dark:false, user:null,
+  ob:{step:0, bl:'', school:'', year:'2025', lk:[], subs:[]},
+  tab:'home',
+  calcSubjects:[], calcExams:[], calcTab:'block1',
+  calcSeminarEnabled:false,
+  calcSeminar:[{ma1:'',ma2:'',schriftl:'',praes:''},{ma1:'',ma2:'',schriftl:'',praes:''}],
+  calcNextId:10,
+  subj:null, currentTopic:null,
+  fcIdx:0, fcFlipped:false,
+  qIdx:0, qAnswered:false, qSelected:-1, qScore:0,
+  qSubFilter:'all', qAfbFilter:'all',
+  aiMsgs:[], aiInput:'',
+  premModal:false, profileModal:false, profileTab:'stats',
+  authMode:'login', search:'',
+  streak:12, xp:3480, level:14, targetGrade:1.5,
+};
+
+function initCalcDefaults() {
+  if (S.calcSubjects.length === 0) {
+    S.calcSubjects = [
+      {id:1, name:'Mathematik', icon:'📐', lk:false, grades:['','','','']},
+      {id:2, name:'Deutsch', icon:'📖', lk:false, grades:['','','','']},
+      {id:3, name:'Englisch', icon:'🌍', lk:false, grades:['','','','']},
+    ];
+    S.calcNextId = 4;
+  }
+  if (S.calcExams.length === 0) {
+    S.calcExams = [
+      {id:1, name:'Prüfung 1', grade:''},
+      {id:2, name:'Prüfung 2', grade:''},
+      {id:3, name:'Prüfung 3', grade:''},
+      {id:4, name:'Prüfung 4', grade:''},
+    ];
+  }
+}
+
+// ==================== BUNDESLAND RULES ====================
+var BL_RULES = {
+  'Baden-Württemberg':{lkCount:3,g8g9:'G8 (G9 im Aufbau)',oberstufe:'Kl.10–12',divisor:48,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungsfach',info:'3 Leistungsfächer (nur 2 doppelt gewichtet). Kernfächer: Deutsch, Mathe, Fremdsprache.'},
+  'Bayern':{lkCount:0,g8g9:'G9 seit 2025/26',oberstufe:'Jgst.12–13',divisor:40,block2Pruef:4,block2Fakt:5,lkTerm:'Prüfungsfach',hasSeminar:true,info:'Kein LK/GK-System. 5 Abiturprüfungsfächer. W-Seminar & P-Seminar Pflicht.'},
+  'Berlin':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:40,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Getrennte Mindestpunktzahlen: LK-Block ≥80, GK-Block ≥120.'},
+  'Brandenburg':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:40,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Wie Berlin. Gemeinsamer Bildungsraum Berlin-Brandenburg.'},
+  'Bremen':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Variable GK-Anzahl (28–32). BLL als 5. Prüfungselement möglich.'},
+  'Hamburg':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Profiloberstufen-System. Profilfach = 1. Prüfungsfach.'},
+  'Hessen':{lkCount:2,g8g9:'G9 überwiegend',oberstufe:'EF+Q1–Q4',divisor:40,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Strengste Defizitgrenze: max. 6 Unterkurse (2 in LK). Deutsch+Mathe Pflichtprüfung.'},
+  'Mecklenburg-Vorpommern':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:44,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Gymnasium ab Kl.7. Fester Divisor 44.'},
+  'Niedersachsen':{lkCount:2,g8g9:'G9 seit 2015',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'BLL ODER Präsentationsprüfung als 5. Element wählbar.'},
+  'Nordrhein-Westfalen':{lkCount:2,g8g9:'G8→G9 Übergang',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:4,block2Fakt:5,lkTerm:'Leistungskurs',info:'Dynamischer Divisor S=43–48. 4 Prüfungen×5 (ohne BLL).'},
+  'Rheinland-Pfalz':{lkCount:2,g8g9:'G9 (MSS)',oberstufe:'MSS Kl.11–13',divisor:43,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Mainzer Studienstufe (MSS). Divisor 43 (44 mit Facharbeit).'},
+  'Saarland':{lkCount:2,g8g9:'G8→G9 Übergang',oberstufe:'EF+Q1–Q4',divisor:43,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Strukturell nah an Rheinland-Pfalz. 27 GK-Halbjahre.'},
+  'Sachsen':{lkCount:2,g8g9:'G8',oberstufe:'Profiloberstufe Kl.11–12',divisor:44,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'Profiloberstufe. 40 Kurshalbjahre. LK 1+2 = Abiturprüfungsfächer 1+2.'},
+  'Sachsen-Anhalt':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:44,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'SONDERFALL: LK-Doppelgewichtung ist optional. Max. 20% Unterkurse.'},
+  'Schleswig-Holstein':{lkCount:2,g8g9:'G8→G9 Übergang',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'BEIDE LKs müssen schriftlich geprüft werden.'},
+  'Thüringen':{lkCount:2,g8g9:'G8',oberstufe:'EF+Q1–Q4',divisor:46,block2Pruef:5,block2Fakt:4,lkTerm:'Leistungskurs',info:'BLL ODER Präsentationsprüfung wählbar.'},
+};
+
+var BL_NAMES = Object.keys(BL_RULES);
+
+function getRules() {
+  var bl = (S.user && S.user.bundesland) || 'Nordrhein-Westfalen';
+  return BL_RULES[bl] || BL_RULES['Nordrhein-Westfalen'];
+}
+
+// ==================== SUBJECTS DATA ====================
+var SUBJECTS = [
+  {id:'math', name:'Mathematik',  icon:'📐', col:'#1d4ed8',
+   topics:[
+    {id:'analysis',    title:'Analysis: Ableitungen & Differentialrechnung'},
+    {id:'integral',    title:'Analysis: Integralrechnung'},
+    {id:'kurven',      title:'Kurvendiskussion'},
+    {id:'stochastik',  title:'Stochastik & Wahrscheinlichkeit'},
+    {id:'vektor',      title:'Vektorgeometrie'},
+    {id:'linAlg',      title:'Analytische Geometrie / Lineare Algebra'},
+   ]},
+  {id:'de', name:'Deutsch', icon:'📖', col:'#7c3aed',
+   topics:[
+    {id:'lyrik',      title:'Gedichtanalyse & Lyrik'},
+    {id:'prosa',      title:'Prosaanalyse (Romane, Kurzgeschichten)'},
+    {id:'drama',      title:'Dramenanalyse'},
+    {id:'eroerter',   title:'Erörterung & Argumentation'},
+    {id:'sprache',    title:'Sprachgebrauch & Stilmittel'},
+   ]},
+  {id:'en', name:'Englisch', icon:'🌍', col:'#0891b2',
+   topics:[
+    {id:'essay',      title:'Essay Writing'},
+    {id:'reading',    title:'Reading Comprehension & Text Analysis'},
+    {id:'mediation',  title:'Mediation (Sprachmittlung)'},
+    {id:'grammar',    title:'Grammatik: Key Structures'},
+    {id:'literature', title:'British/American Literature & Culture'},
+   ]},
+  {id:'bio', name:'Biologie', icon:'🧬', col:'#16a34a',
+   topics:[
+    {id:'genetik',    title:'Genetik: DNA, Erbgang, Mendel'},
+    {id:'zelle',      title:'Zellbiologie & Stoffwechsel'},
+    {id:'evolution',  title:'Evolution & Selektion'},
+    {id:'neurobio',   title:'Neurobiologie & Sinnesphysiologie'},
+    {id:'oekologie',  title:'Ökologie & Stoffkreisläufe'},
+   ]},
+  {id:'phy', name:'Physik', icon:'⚛️', col:'#059669',
+   topics:[
+    {id:'mechanik',   title:'Mechanik: Kinematik & Dynamik'},
+    {id:'elektrik',   title:'Elektrodynamik & Magnetismus'},
+    {id:'quanten',    title:'Quantenphysik'},
+    {id:'optik',      title:'Optik & Wellen'},
+    {id:'thermo',     title:'Thermodynamik'},
+   ]},
+  {id:'che', name:'Chemie', icon:'🧪', col:'#dc2626',
+   topics:[
+    {id:'organik',    title:'Organische Chemie'},
+    {id:'elektroche', title:'Elektrochemie'},
+    {id:'saeure',     title:'Säure-Base-Reaktionen'},
+    {id:'reaktion',   title:'Reaktionskinetik & Gleichgewicht'},
+   ]},
+  {id:'his', name:'Geschichte', icon:'🏛️', col:'#92400e',
+   topics:[
+    {id:'weimar',     title:'Weimarer Republik (1919–1933)'},
+    {id:'ns',         title:'Nationalsozialismus & Holocaust'},
+    {id:'kalt',       title:'Kalter Krieg (1947–1990)'},
+    {id:'wieder',     title:'Deutsche Wiedervereinigung'},
+    {id:'rev',        title:'Revolutionen & Modernisierung (19. Jh.)'},
+   ]},
+  {id:'geo', name:'Geographie', icon:'🗺️', col:'#0369a1',
+   topics:[
+    {id:'klima',      title:'Klimawandel & Klimazonen'},
+    {id:'stadt',      title:'Stadtentwicklung & Urbanisierung'},
+    {id:'glob',       title:'Globalisierung & Entwicklungsländer'},
+    {id:'tektonik',   title:'Plattentektonik & Naturkatastrophen'},
+   ]},
+  {id:'pol', name:'Politik/SoWi', icon:'⚖️', col:'#6d28d9',
+   topics:[
+    {id:'demo',       title:'Demokratie & Grundgesetz'},
+    {id:'eu',         title:'Europäische Union'},
+    {id:'wirtschaft', title:'Wirtschaftssystem & Sozialpolitik'},
+    {id:'global',     title:'Internationale Beziehungen'},
+   ]},
+  {id:'cs', name:'Informatik', icon:'💻', col:'#374151',
+   topics:[
+    {id:'algo',       title:'Algorithmen & Datenstrukturen'},
+    {id:'oop',        title:'Objektorientierte Programmierung'},
+    {id:'daten',      title:'Datenbanken & SQL'},
+    {id:'netz',       title:'Netzwerke & Datenschutz'},
+   ]},
+  {id:'lat', name:'Latein', icon:'🏺', col:'#78716c',
+   topics:[
+    {id:'gram',       title:'Grammatik: Kasus, Tempora, Modi'},
+    {id:'ueber',      title:'Übersetzungsmethodik'},
+    {id:'cicero',     title:'Cicero: Reden & Briefe'},
+    {id:'antike',     title:'Antike Welt & Kultur'},
+   ]},
+  {id:'mus', name:'Musik', icon:'🎵', col:'#db2777',
+   topics:[
+    {id:'harmonie',   title:'Harmonielehre & Tonsatz'},
+    {id:'musikgesc',  title:'Musikgeschichte: Epochen'},
+    {id:'analyse',    title:'Musikanalyse'},
+   ]},
+  {id:'art', name:'Kunst', icon:'🎨', col:'#ea580c',
+   topics:[
+    {id:'kunstgesc',  title:'Kunstgeschichte: Epochen & Stile'},
+    {id:'bildana',    title:'Bildanalyse & Interpretation'},
+    {id:'praxis',     title:'Praktische Arbeit & Techniken'},
+   ]},
+  {id:'eth', name:'Ethik/Religion', icon:'💭', col:'#0f766e',
+   topics:[
+    {id:'kant',       title:'Kants Pflichtethik & Kategorischer Imperativ'},
+    {id:'aristoteles',title:'Aristoteles: Tugendethik & Eudaimonie'},
+    {id:'bioethik',   title:'Bioethik: Sterbehilfe & Gentechnik'},
+    {id:'sozialethik',title:'Sozialethik & Gerechtigkeit'},
+   ]},
+  {id:'spo', name:'Sport', icon:'⚽', col:'#0284c7',
+   topics:[
+    {id:'trainingsl', title:'Trainingslehre & Sportbiologie'},
+    {id:'sportpsy',   title:'Sportpsychologie & Motivation'},
+    {id:'spielana',   title:'Spielanalyse & Taktik'},
+   ]},
+];
+
+// ==================== LESSON CONTENT ====================
+var LESSONS = {
+  'math_analysis':{
+    title:'Analysis: Ableitungen & Differentialrechnung',
+    intro:'Die Ableitung f\'(x) beschreibt die momentane Änderungsrate (Steigung der Tangente) eines Graphen im Punkt x. Sie ist das Kernthema jeder Mathematik-Abiturprüfung.',
+    rules:[
+      ['Potenzregel','(xⁿ)\' = n · xⁿ⁻¹','(x⁴)\' = 4x³'],
+      ['Kettenregel','[f(g(x))]\' = f\'(g(x)) · g\'(x)','[sin(x²)]\' = cos(x²) · 2x'],
+      ['Produktregel','(u·v)\' = u\'·v + u·v\'','(x² · eˣ)\' = 2x·eˣ + x²·eˣ'],
+      ['Quotientenregel','(u/v)\' = (u\'v − uv\') / v²','(x/sin x)\' = (sin x − x·cos x)/sin²x'],
+      ['Summenregel','(f+g)\' = f\' + g\'','(x³+x)\' = 3x²+1'],
+      ['Konstante','(c)\' = 0','(7)\' = 0'],
+      ['Faktor','(c·f)\' = c·f\'','(5x³)\' = 15x²'],
+    ],
+    example:{
+      problem:'f(x) = 3x⁴ − 2x² + 5x − 7. Berechne f\'(x) und f\'(2).',
+      solution:'f\'(x) = 12x³ − 4x + 5\nf\'(2) = 12·8 − 4·2 + 5 = 96 − 8 + 5 = 93',
+      explanation:'Jeder Term wird einzeln abgeleitet (Summenregel + Potenzregel + Faktor).',
+    },
+    tip:'Im Abi werden oft zusammengesetzte Funktionen verlangt. Erkenne immer zuerst: Brauchst du Ketten-, Produkt- oder Quotientenregel?',
+  },
+  'math_integral':{
+    title:'Integralrechnung',
+    intro:'Das bestimmte Integral ∫[a,b] f(x)dx berechnet den vorzeichenorientierten Flächeninhalt zwischen Graph und x-Achse. Die unbestimmte Stammfunktion F(x) gilt: F\'(x) = f(x).',
+    rules:[
+      ['Potenzregel','∫xⁿ dx = xⁿ⁺¹/(n+1) + C (n≠-1)','∫x³ dx = x⁴/4 + C'],
+      ['Faktorregel','∫c·f dx = c·∫f dx','∫5x² dx = 5x³/3 + C'],
+      ['Summenregel','∫(f+g) dx = ∫f dx + ∫g dx','∫(x²+3) dx = x³/3+3x+C'],
+      ['Hauptsatz','∫[a,b]f(x)dx = F(b)−F(a)','∫[1,3]2x dx = [x²]₁³ = 9−1 = 8'],
+      ['eˣ','∫eˣ dx = eˣ + C','∫2eˣ dx = 2eˣ + C'],
+      ['1/x','∫(1/x) dx = ln|x| + C','∫(1/x) dx = ln|x| + C'],
+    ],
+    example:{
+      problem:'Berechne ∫[0,2] (x² + 2x) dx.',
+      solution:'F(x) = x³/3 + x²\nF(2) = 8/3 + 4 = 8/3 + 12/3 = 20/3\nF(0) = 0\nErgebnis: 20/3 ≈ 6,67',
+      explanation:'Stammfunktion bilden, dann F(b)−F(a) berechnen.',
+    },
+    tip:'Achte auf Flächenanteile unterhalb der x-Achse (negatives Vorzeichen). Häufig wird nach dem "Flächeninhalt" (immer positiv) gefragt!',
+  },
+  'math_kurven':{
+    title:'Kurvendiskussion',
+    intro:'Vollständige Kurvendiskussion: Alle wichtigen Eigenschaften eines Graphen systematisch untersuchen. Im Abitur ist der Algorithmus entscheidend.',
+    rules:[
+      ['Nullstellen','f(x) = 0 lösen','x-Schnittpunkte'],
+      ['Extrempunkte','f\'(x) = 0, dann f\'\'(x) prüfen','f\'\'(x)>0: Min; f\'\'(x)<0: Max'],
+      ['Wendepunkte','f\'\'(x) = 0, f\'\'\'(x) ≠ 0','Krümmungswechsel'],
+      ['Monotonie','f\'(x)>0: steigend; f\'(x)<0: fallend','aus f\'(x) ablesen'],
+      ['Krümmung','f\'\'(x)>0: Linkskr.; f\'\'(x)<0: Rechtskr.','aus f\'\'(x) ablesen'],
+      ['Asymptoten','Verhalten für x→±∞ untersuchen','lim_{x→∞} f(x)'],
+    ],
+    example:{
+      problem:'Kurvendiskussion von f(x) = x³ − 3x + 2',
+      solution:'f\'(x) = 3x² − 3 = 0 → x = ±1\nf\'\'(x) = 6x\nf\'\'(1) = 6 > 0 → lokales Minimum bei (1|0)\nf\'\'(−1) = −6 < 0 → lokales Maximum bei (−1|4)\nWendepunkt: f\'\'(x)=0 → x=0, Punkt (0|2)',
+      explanation:'Immer alle Schritte zeigen: Ableitungen, Bedingungen, Koordinaten, Charakterisierung.',
+    },
+    tip:'Jede Kurvendiskussion braucht: Nullstellen, Extrema mit Charakterisierung, Wendepunkte, Monotonie-/Krümmungsverhalten. Tabelle hilft!',
+  },
+  'math_stochastik':{
+    title:'Stochastik & Wahrscheinlichkeitsrechnung',
+    intro:'Stochastik untersucht Zufallsexperimente. Zentrale Konzepte: Wahrscheinlichkeit, Verteilungen, Hypothesentests.',
+    rules:[
+      ['Laplace','P(A) = |A| / |Ω|','Faire Würfel: P(6) = 1/6'],
+      ['Gegenwahrsch.','P(Ā) = 1 − P(A)','P(nicht 6) = 5/6'],
+      ['Und-Regel (unabh.)','P(A∩B) = P(A)·P(B)','P(2×Kopf) = 0,5·0,5 = 0,25'],
+      ['Oder-Regel','P(A∪B) = P(A)+P(B)−P(A∩B)',''],
+      ['Bedingte Wahrs.','P(A|B) = P(A∩B)/P(B)',''],
+      ['Binomialvert.','P(X=k) = C(n,k)·pᵏ·(1−p)ⁿ⁻ᵏ','n Versuche, p Erfolgswahrsch.'],
+      ['Erwartungswert','E(X) = n·p (Binomial)',''],
+      ['Standardabw.','σ = √(n·p·(1−p))',''],
+    ],
+    example:{
+      problem:'Eine Münze wird 10× geworfen. Berechne P(X=6) (genau 6× Kopf).',
+      solution:'n=10, k=6, p=0,5\nP(X=6) = C(10,6) · 0,5⁶ · 0,5⁴\n= 210 · 0,015625 · 0,0625\n= 210 · 0,000977 ≈ 0,205\nAlso ca. 20,5%',
+      explanation:'C(10,6) = 10!/(6!·4!) = 210. Mit Taschenrechner: binomPdf(10;0.5;6).',
+    },
+    tip:'Im Abi oft gefragt: "Führe einen Hypothesentest durch". Lerne den Signifikanzniveauansatz (5% oder 10%) systematisch.',
+  },
+  'math_vektor':{
+    title:'Vektorgeometrie',
+    intro:'Vektoren beschreiben Größen mit Betrag und Richtung im 3D-Raum. Kernthemen: Geraden, Ebenen, Abstände und Schnitte.',
+    rules:[
+      ['Skalarprodukt','a⃗·b⃗ = a₁b₁+a₂b₂+a₃b₃','(1,2,3)·(4,5,6) = 4+10+18=32'],
+      ['Orthogonal','a⃗·b⃗ = 0','Wenn Skalarprodukt = 0'],
+      ['Betrag','|a⃗| = √(a₁²+a₂²+a₃²)','|(3,4,0)| = √(9+16) = 5'],
+      ['Kreuzprodukt','a⃗×b⃗ ⊥ a⃗ und b⃗','Normalenvektor einer Ebene'],
+      ['Geradengl.','g: x⃗ = p⃗ + t·r⃗','Punkt P, Richtungsvektor r⃗'],
+      ['Ebenengl.(NF)','E: n⃗·(x⃗−p⃗) = 0','Normalenvektor n⃗, Aufpunkt P'],
+      ['Punkt-Ebene Abst.','d = |n⃗·(q⃗−p⃗)| / |n⃗|',''],
+    ],
+    example:{
+      problem:'Bestimme die Ebenengleichung durch A(1|0|2), B(3|1|0), C(0|2|1).',
+      solution:'AB⃗ = (2,1,−2), AC⃗ = (−1,2,−1)\nn⃗ = AB⃗×AC⃗ = (1·(−1)−(−2)·2, (−2)·(−1)−2·(−1), 2·2−1·(−1))\n= (−1+4, 2+2, 4+1) = (3,4,5)\nE: 3(x−1)+4(y−0)+5(z−2)=0\n3x+4y+5z = 13',
+      explanation:'Normalenvektor via Kreuzprodukt, dann Ebenengleichung aufstellen.',
+    },
+    tip:'Abi-Aufgaben zur Analytischen Geometrie: Immer zuerst prüfen ob Punkt auf Gerade/Ebene liegt. Dann Schnittpunkte berechnen.',
+  },
+  'his_weimar':{
+    title:'Weimarer Republik (1919–1933)',
+    intro:'Die Weimarer Republik war Deutschlands erste Demokratie. Sie scheiterte an strukturellen Schwächen und äußeren Krisen.',
+    rules:[
+      ['1919','Gründung; Weimarer Verfassung (11.8.1919)','Verhältniswahlrecht, Art. 48 (Notverordnung)'],
+      ['1923','Hyperinflation; Hitlerputsch','Stresemann stabilisiert Währung'],
+      ['1923–29','Goldene 20er; Stresemann-Ära','Dawes-Plan, Locarno-Vertrag, Völkerbund'],
+      ['1929','Weltwirtschaftskrise','Massenarbeitslosigkeit, Extremismus wächst'],
+      ['1930–33','Präsidialkabinette (Brüning, Papen, Schleicher)','Demokratie ausgehöhlt'],
+      ['1933','Hitler Reichskanzler (30.1.1933)','Ermächtigungsgesetz (23.3.1933)'],
+    ],
+    example:{
+      problem:'AFB III: War das Scheitern der Weimarer Republik unvermeidbar?',
+      solution:'These: Nein, nicht zwangsläufig.\nStructurell: Fehlende demokratische Tradition, antidemokratische Eliten, Art. 48\nKontingent: Stresemann-Phase (1923–29) zeigt Stabilisierungspotenzial\nEin anderer Verlauf der Wirtschaftskrise oder Stresemann länger am Leben → mögliche Konsolidierung\nUrteil: Strukturen schwächten, aber Hitlers Aufstieg war nicht determiniert',
+      explanation:'AFB III verlangt begründetes Urteil mit Belegen pro und contra.',
+    },
+    tip:'Lerne die WEIMARER BELASTUNGSFAKTOREN: V(ersailler Vertrag) – E(liten gegen Demo.) – K(risen 1923+1929) – A(rt.48) – R(adikale Parteien).',
+  },
+  'bio_genetik':{
+    title:'Genetik: DNA, Erbgang & Mendel',
+    intro:'Genetik beschäftigt sich mit der Vererbung von Eigenschaften. Grundlage: DNA als Träger genetischer Information.',
+    rules:[
+      ['DNA-Aufbau','Doppelhelix; Basen: A-T, G-C (komplementär)','A=Adenin, T=Thymin, G=Guanin, C=Cytosin'],
+      ['Transkription','DNA → mRNA im Zellkern','T→A, A→U, G→C, C→G'],
+      ['Translation','mRNA → Protein am Ribosom','3 Basen (Codon) = 1 Aminosäure'],
+      ['1. Mendel','Uniformitätsgesetz: F1-Generation uniform','Aa × Aa → 1 AA : 2 Aa : 1 aa'],
+      ['2. Mendel','Spaltungsgesetz: 3:1-Verhältnis in F2','Phänotyp: 3 dominant : 1 rezessiv'],
+      ['3. Mendel','Unabhängigkeitsgesetz (verschiedene Chromosomen)','9:3:3:1 bei zwei Merkmalen'],
+      ['Codominanz','Beide Allele sichtbar (Blutgruppe AB)','Ia + Ib → AB'],
+    ],
+    example:{
+      problem:'Eltern: AaBb × AaBb (A=dominant über a, B=dominant über b). Welche Phänotypen entstehen in welchem Verhältnis?',
+      solution:'Kreuzungsschema (16 Kombinationen):\nA_B_ : A_bb : aaB_ : aabb = 9 : 3 : 3 : 1\n(Zahlen: 9 + 3 + 3 + 1 = 16 Kombinationen insgesamt)',
+      explanation:'Jedes Merkmal getrennt nach Mendel 2 analysieren: Aa×Aa→3:1. Beide kombiniert: (3:1)²=9:3:3:1.',
+    },
+    tip:'Zeichne immer das vollständige Kreuzungsschema! Im Abi gibt es Punktabzug wenn Genotyp/Phänotyp-Unterschied unklar bleibt.',
+  },
+  'bio_evolution':{
+    title:'Evolution & Selektion',
+    intro:'Die Evolutionstheorie (Darwin, 1859) erklärt die Entstehung der Artenvielfalt durch natürliche Selektion auf Grundlage genetischer Variabilität.',
+    rules:[
+      ['Variation','Individuen unterscheiden sich (Mutation, Rekombination)','Grundlage der Selektion'],
+      ['Selektion','Besser angepasste überleben & reproduzieren mehr','"Survival of the fittest"'],
+      ['Reproduktion','Vorteilhafte Merkmale werden vererbt','Allelhäufigkeit verändert sich'],
+      ['Speziation','Isolation → genetische Divergenz → neue Arten','Allopatrische Artbildung'],
+      ['Mutation','Zufällige Änderungen im Erbgut','Spontan oder durch Strahlung/Chemikalien'],
+      ['Gendrift','Zufällige Allelhäufigkeitsänderung (kleine Pop.)','Flaschenhalseffekt'],
+    ],
+    example:{
+      problem:'Erkläre die Entstehung des Antibiotikaresistenz bei Bakterien.',
+      solution:'1. Variation: Zufällige Mutation erzeugt resistente Bakterien\n2. Selektion: Antibiotika tötet empfindliche → Resistente überleben\n3. Reproduktion: Resistente Nachkommen dominieren Population\n→ Natürliche Selektion zugunsten Resistenz durch Antibiotikaeinsatz',
+      explanation:'Klassisches AFB II Beispiel: Evolutionsprinzipien auf konkreten Fall anwenden.',
+    },
+    tip:'Verwende immer die Evolutionsfaktoren (Mutation, Selektion, Isolation, Gendrift) als Struktur bei Evolutionsaufgaben.',
+  },
+  'phy_mechanik':{
+    title:'Mechanik: Kinematik & Dynamik',
+    intro:'Die Mechanik beschreibt Bewegungen (Kinematik) und deren Ursachen (Dynamik). Grundlage: Newtonsche Gesetze.',
+    rules:[
+      ['v = s/t','Geschwindigkeit = Weg / Zeit','v in m/s'],
+      ['a = Δv/Δt','Beschleunigung = Geschwindigkeitsänderung / Zeit','a in m/s²'],
+      ['s = ½at²','Freier Fall (v₀=0)','g = 9,81 m/s²'],
+      ['F = m·a','2. Newtonsches Gesetz','F in N, m in kg'],
+      ['p = m·v','Impuls','Impulserhaltung: p_ges = const.'],
+      ['W = F·s','Arbeit = Kraft · Weg','W in Joule (J)'],
+      ['E_kin = ½mv²','Kinetische Energie','E_pot = mgh'],
+      ['Energieerhaltung','E_kin + E_pot = const.','v = √(2gh) beim freien Fall'],
+    ],
+    example:{
+      problem:'Ein Ball (m=0,5 kg) fällt aus h=20m. Wie groß ist v beim Aufprall?',
+      solution:'Energieerhaltung: mgh = ½mv²\nv = √(2gh) = √(2 · 9,81 · 20) = √392,4 ≈ 19,8 m/s',
+      explanation:'Potenzielle Energie wird vollständig in kinetische Energie umgewandelt (kein Luftwiderstand).',
+    },
+    tip:'Energieerhaltung ist der "Königsweg" bei vielen Abi-Aufgaben. Wenn du nicht weiterkommst: Welche Energieformen treten auf?',
+  },
+  'phy_quanten':{
+    title:'Quantenphysik',
+    intro:'Die Quantenphysik beschreibt das Verhalten von Teilchen auf atomarer Ebene. Kernkonzepte: Welle-Teilchen-Dualismus, Photoeffekt, Atommodell.',
+    rules:[
+      ['Photoeffekt','E = h·f (Photon)','h = 6,626 × 10⁻³⁴ J·s (Planck)'],
+      ['E_kin max','E_kin = h·f − W_A','W_A = Austrittsarbeit'],
+      ['de-Broglie','λ = h / p = h / (m·v)','Materiewellen'],
+      ['Bohr-Atom','E_n = −13,6 eV / n²','Energieniveaus des H-Atoms'],
+      ['Emission','ΔE = E_m − E_n = h·f','Lichtemission beim Energieübergang'],
+      ['Unschärfe','Δx·Δp ≥ ℏ/2','Heisenbergsche Unschärferelation'],
+    ],
+    example:{
+      problem:'Licht der Frequenz f = 8·10¹⁴ Hz trifft auf Natrium (W_A = 3,3·10⁻¹⁹ J). Berechne E_kin der ausgelösten Elektronen.',
+      solution:'E_photon = h·f = 6,626·10⁻³⁴ · 8·10¹⁴ = 5,3·10⁻¹⁹ J\nE_kin = E_photon − W_A = 5,3·10⁻¹⁹ − 3,3·10⁻¹⁹ = 2,0·10⁻¹⁹ J',
+      explanation:'Photoeffekt: Photon gibt Energie an Elektron. Was nach Überwindung der Austrittsarbeit übrig bleibt = kinetische Energie.',
+    },
+    tip:'Lerne die Planksche Konstante h = 6,626×10⁻³⁴ J·s auswendig. Sie erscheint in fast jeder Quantenphysik-Aufgabe.',
+  },
+};
+
+// ==================== QUIZ QUESTIONS ====================
+var ALL_QUIZ = [
+  // MATHEMATIK
+  {q:'Was ergibt die Ableitung f\'(x) von f(x) = x⁵ − 3x² + 7?',opts:['5x⁴ − 6x','5x⁴ − 3x','4x⁴ − 6x','5x⁵ − 6x'],ans:0,ex:'Potenzregel: (xⁿ)\'=n·xⁿ⁻¹. → 5x⁴ − 6x + 0.',afb:1,sub:'math'},
+  {q:'∫x³ dx = ?',opts:['x⁴/4 + C','x⁴ + C','3x² + C','x³/3 + C'],ans:0,ex:'Potenzregel für Integration: ∫xⁿ dx = xⁿ⁺¹/(n+1)+C. → x⁴/4+C.',afb:1,sub:'math'},
+  {q:'f(x) = x³ − 3x. An welcher Stelle hat f ein lokales Minimum?',opts:['x = 1','x = −1','x = 0','x = 3'],ans:0,ex:'f\'(x)=3x²−3=0 → x=±1. f\'\'(x)=6x. f\'\'(1)=6>0 → Min. bei x=1.',afb:2,sub:'math'},
+  {q:'Berechne ∫[0,2] 2x dx.',opts:['4','2','8','6'],ans:0,ex:'F(x)=x². F(2)−F(0)=4−0=4.',afb:1,sub:'math'},
+  {q:'Eine Münze wird 6-mal geworfen. P(genau 4× Kopf) = ?',opts:['≈ 23,4%','≈ 15,6%','≈ 10,9%','≈ 31,2%'],ans:0,ex:'P(X=4) = C(6,4)·0,5⁴·0,5² = 15·(1/64)·(1/4) = 15/256 ≈ 5,86%... Korrekt: C(6,4)=15; 0,5⁶=1/64; P=15/64≈23,4%.',afb:2,sub:'math'},
+  {q:'Vektoren a⃗=(2,1,−1) und b⃗=(3,−2,4). Skalarprodukt a⃗·b⃗ = ?',opts:['0','8','−4','10'],ans:0,ex:'a⃗·b⃗ = 2·3 + 1·(−2) + (−1)·4 = 6−2−4 = 0. → Die Vektoren stehen senkrecht aufeinander!',afb:1,sub:'math'},
+  {q:'Was ist die Bedingung für einen Wendepunkt einer Funktion f?',opts:['f\'\'(x)=0 und f\'\'\'(x)≠0','f\'(x)=0','f\'\'(x)=0 und f\'(x)≠0','f(x)=0'],ans:0,ex:'Wendepunkt: f\'\'(x₀)=0 UND f\'\'\'(x₀)≠0 (Vorzeichenwechsel in f\'\'). Nur f\'\'=0 reicht nicht!',afb:1,sub:'math'},
+  {q:'Ein Betrieb hat Kostenfunktion K(x)=x³−6x²+15x. Wann sind Stückkosten k(x) minimal?',opts:['x=3','x=2','x=4','x=6'],ans:0,ex:'k(x)=K(x)/x=x²−6x+15. k\'(x)=2x−6=0 → x=3. k\'\'(3)=2>0 → Minimum.',afb:3,sub:'math'},
+  {q:'Was beschreibt der Erwartungswert E(X) bei der Binomialverteilung?',opts:['E(X) = n·p','E(X) = p/n','E(X) = √(n·p)','E(X) = n·p·(1−p)'],ans:0,ex:'E(X)=n·p. Bei n=10 Versuchen, p=0,4: E(X)=4. Die Standardabweichung σ=√(n·p·(1−p)).',afb:1,sub:'math'},
+  {q:'Eine Gerade g hat Richtungsvektor (2,1,−3). Eine parallele Gerade h enthält welchen Richtungsvektor?',opts:['(4,2,−6)','(2,1,3)','(1,2,−3)','(−2,−1,3)'],ans:0,ex:'Parallele Geraden haben Richtungsvektoren, die Vielfache voneinander sind. (4,2,−6) = 2·(2,1,−3). Auch (−2,−1,3) wäre richtig (antiparallel).',afb:2,sub:'math'},
+  // Geschichte
+  {q:'Wann wurde die Weimarer Verfassung verabschiedet?',opts:['11. August 1919','9. November 1918','28. Juni 1919','30. Januar 1933'],ans:0,ex:'Die Weimarer Verfassung wurde am 11. August 1919 verkündet. Am 9.11.1918 wurde die Republik ausgerufen, am 28.6.1919 wurde der Versailler Vertrag unterzeichnet.',afb:1,sub:'his'},
+  {q:'Was war der Dawes-Plan (1924)?',opts:['US-amerikanischer Plan zur Regelung der Reparationsforderungen','Militärbündnis gegen Frankreich','Wirtschaftsprogramm zur Industrialisierung','Friedensvertrag mit Polen'],ans:0,ex:'Der Dawes-Plan (1924) regelte Deutschlands Reparationszahlungen durch US-Kredite. Er ermöglichte die wirtschaftliche Stabilisierung der Goldenen Zwanziger.',afb:1,sub:'his'},
+  {q:'Was war Art. 48 der Weimarer Verfassung und warum war er problematisch?',opts:['Notverordnungsrecht des Präsidenten ohne Parlamentsbeteiligung','Verhältniswahlrecht','Religionsfreiheit','Grundrecht auf Eigentum'],ans:0,ex:'Art. 48 erlaubte dem Reichspräsidenten, per Dekret ohne Parlament zu regieren. Ab 1930 nutzten Präsidialkabinette Art. 48 regelmäßig, was die parlamentarische Demokratie aushöhlte.',afb:2,sub:'his'},
+  {q:'Wann fand die Berliner Blockade durch die Sowjetunion statt?',opts:['1948–1949','1945–1946','1953','1961'],ans:0,ex:'Die Berliner Blockade dauerte von Juni 1948 bis Mai 1949. Die Westmächte antworteten mit der Berliner Luftbrücke.',afb:1,sub:'his'},
+  {q:'Was war der Marshall-Plan? Bewerte seine Bedeutung.',opts:['US-Wirtschaftshilfe für Europa; stärkte Westbindung und Anti-Kommunismus','Militärbündnis der NATO','Deutschlands Reparationsplan','Sowjetisches Gegenprogramm'],ans:0,ex:'Der Marshall-Plan (1948) war ein US-Wiederaufbauprogramm für Europa (ca. 12 Mrd. Dollar). Ziele: wirtschaftliche Stabilisierung UND Eindämmung des Kommunismus. Zementierte die Westbindung der BRD.',afb:2,sub:'his'},
+  {q:'Erkläre das Konzept des "Kalten Krieges" in einem Satz.',opts:['Systemkonflikt zwischen USA+Westen und USSR+Osten ohne direkte Kampfhandlungen','Erster Weltkrieg zwischen Frankreich und Deutschland','Wirtschaftskrieg Europas gegen USA','Bürgerkrieg in Korea'],ans:0,ex:'Kalter Krieg (1947–1990): Systemkonflikt Kapitalismus vs. Kommunismus, geprägt von Rüstungswettlauf, Stellvertreterkriegen und ideologischer Auseinandersetzung ohne direkte militärische Konfrontation der Supermächte.',afb:1,sub:'his'},
+  {q:'Bewertest du die Nürnberger Gesetze (1935) als Vorstufe zum Holocaust? Begründe.',opts:['Ja: systematische Diskriminierung schuf Grundlage für radikalere Verfolgungsschritte','Nein: sie waren reine Verwaltungsgesetze','Nein: der Holocaust begann erst 1939','Ja: sie befahlen bereits die Vernichtung'],ans:0,ex:'AFB III: Die Nürnberger Gesetze (Reichsbürgergesetz, Blutschutzgesetz) degradierten Juden zu Untermenschen unter dem Gesetz. Sie erfolgten im Kontext eskalierender Verfolgung und schufen die rechtliche Basis für weitere Radikalisierung. Historischer Konsens: Stufenweise Radikalisierung der NS-Judenpolitik.',afb:3,sub:'his'},
+  // BIOLOGIE
+  {q:'Welche Basenpaare bilden sich in der DNA?',opts:['A-T und G-C','A-G und T-C','A-C und G-T','A-U und G-C'],ans:0,ex:'In der DNA: Adenin paart mit Thymin (A-T), Guanin mit Cytosin (G-C). In der RNA: statt Thymin → Uracil (A-U).',afb:1,sub:'bio'},
+  {q:'Was unterscheidet Mitose von Meiose?',opts:['Mitose: 2 identische Tochterzellen (diploid); Meiose: 4 Keimzellen (haploid)','Mitose: 4 Keimzellen; Meiose: 2 Tochterzellen','Mitose findet in Keimzellen statt','Kein Unterschied'],ans:0,ex:'Mitose: Wachstum/Reparatur, 1→2 Zellen, Chromosomenzahl bleibt. Meiose: Fortpflanzung, 1→4 Keimzellen, Chromosomenzahl halbiert, Crossing-over.',afb:1,sub:'bio'},
+  {q:'Eltern: AaBb × aabb. Welche Genotypen erscheinen in der F1?',opts:['AaBb, Aabb, aaBb, aabb zu gleichen Teilen','Nur AaBb','Nur aabb','3:1 Verhältnis'],ans:0,ex:'Testkreuzung mit Homozygot-Recessivem: Je 25% AaBb, Aabb, aaBb, aabb. Phänotypen: 4 verschiedene (wenn keine Kopplung).',afb:2,sub:'bio'},
+  {q:'Was ist der Unterschied zwischen Transkription und Translation?',opts:['Transkription: DNA→mRNA; Translation: mRNA→Protein','Transkription: mRNA→Protein; Translation: DNA→mRNA','Beide: DNA→Protein','Transkription findet am Ribosom statt'],ans:0,ex:'Transkription: DNA→mRNA im Zellkern (RNA-Polymerase). Translation: mRNA→Protein am Ribosom (tRNA bringt Aminosäuren). Merkhilfe: Trans=Übertragen, Trans-lation=Übersetzen.',afb:1,sub:'bio'},
+  {q:'Erkläre den Selektionsdruck bei Antibiotikaresistenz.',opts:['Antibiotika tötet Empfindliche, Resistente überleben und reproduzieren → Resistenz breitet sich aus','Antibiotika verursacht Mutationen','Bakterien lernen sich anzupassen','Resistenz ist angeboren, nicht erworben'],ans:0,ex:'Evolutionsprinzip: 1. Variation (Mutation) erzeugt resistente Bakterien; 2. Selektion durch Antibiotika; 3. Resistente pflanzen sich fort. Kein "Lernen" – reine Selektion!',afb:2,sub:'bio'},
+  {q:'Was ist Photosynthese und wo findet sie statt?',opts:['CO₂+H₂O→Glucose+O₂; in Chloroplasten (Granum/Stroma)','O₂+Glucose→CO₂+H₂O; in Mitochondrien','Proteinabbau in der Leber','Energieproduktion in Ribosomen'],ans:0,ex:'Photosynthese: 6CO₂+6H₂O+Licht→C₆H₁₂O₆+6O₂. Lichtreaktion (Thylakoidmembran): ATP+NADPH. Dunkelreaktion/Calvin-Zyklus (Stroma): CO₂-Fixierung.',afb:1,sub:'bio'},
+  {q:'Bewerte: Sollte Keimbahn-Gentherapie beim Menschen erlaubt sein? (AFB III)',opts:['Abwägendes Urteil: Chancen (Erbkrankheiten) vs. Risiken (Designerbabys, Unumkehrbarkeit)','Ja, unbedingt – kein Risiko','Nein, grundsätzlich verboten','Nur bei Krebs erlaubt'],ans:0,ex:'AFB III: Pro: Heilung schwerer Erbkrankheiten (Mukoviszidose, Duchenne). Contra: Unumkehrbare Veränderungen der menschlichen Keimbahn, eugenische Risiken, soziale Ungleichheit. Bioethischer Konsensus: derzeit nicht erlaubt (WHO 2021).',afb:3,sub:'bio'},
+  // PHYSIK
+  {q:'Wie lautet das Ohmsche Gesetz?',opts:['U = R · I','P = U · I','F = m · a','W = Q · U'],ans:0,ex:'Ohmsches Gesetz: U = R · I. Spannung(V) = Widerstand(Ω) × Strom(A). Gilt für ohmsche Leiter bei konstanter Temperatur.',afb:1,sub:'phy'},
+  {q:'Ein Ball fällt aus h=45m. Wie lange dauert der Fall? (g=10 m/s²)',opts:['3 s','4,5 s','2 s','9 s'],ans:0,ex:'h = ½gt² → t = √(2h/g) = √(90/10) = √9 = 3 s.',afb:2,sub:'phy'},
+  {q:'Was beschreibt das 2. Newtonsche Gesetz?',opts:['F = m · a (Kraft = Masse × Beschleunigung)','F = m · v','F = ½mv²','p = m · v'],ans:0,ex:'F = m·a: Die Kraft ist proportional zur Masse und Beschleunigung. Daraus folgt: Je größer die Masse, desto größer die Kraft für gleiche Beschleunigung.',afb:1,sub:'phy'},
+  {q:'Photoeffekt: Licht der Frequenz f trifft Metall. Welche Aussage ist korrekt?',opts:['Mehr Lichtintensität → mehr Elektronen (nicht mehr Energie/Elektron)','Mehr Intensität → schnellere Elektronen','Höhere Frequenz → mehr Elektronen','Elektronen treten nur bei rotem Licht aus'],ans:0,ex:'Photoeffekt: Energie eines Photons E=hf. Intensität bestimmt Anzahl der Photonen (→ Anzahl der Elektronen). Frequenz bestimmt Energie pro Elektron. Einstein, Nobelpreis 1921.',afb:2,sub:'phy'},
+  {q:'Radioaktiver Zerfall: T½ = 8 Tage. Wieviel % ist nach 24 Tagen noch vorhanden?',opts:['12,5 %','25 %','33 %','50 %'],ans:0,ex:'24 Tage = 3 Halbwertszeiten. N = N₀·(½)³ = N₀/8 = 12,5%.',afb:2,sub:'phy'},
+  {q:'Was ist der Unterschied zwischen Kernspaltung und Kernfusion?',opts:['Spaltung: schwere Kerne→leichtere; Fusion: leichte Kerne→schwere; beide setzen Energie frei','Spaltung ist energielos','Fusion findet nur in Reaktoren statt','Beide benötigen Uran'],ans:0,ex:'Kernspaltung (Fission): z.B. Uran-235 + Neutron → Ba+Kr+Energie. Kernfusion: z.B. Deuterium+Tritium → Helium+Neutron+Energie. Fusion setzt pro kg mehr Energie frei; Grundlage der Sonne.',afb:2,sub:'phy'},
+  {q:'Bewerte: Ist Atomkraft eine geeignete Brückentechnologie für die Energiewende? (AFB III)',opts:['Abwägendes Urteil: CO₂-arm aber Endlagerung, Risiken und Kosten problematisch','Ja, ohne Einschränkung','Nein, völlig ungeeignet','Nur in Entwicklungsländern sinnvoll'],ans:0,ex:'AFB III: Pro: CO₂-arm, grundlastfähig, zuverlässig. Contra: Atommüll-Endlagerung ungelöst, Katastrophenrisiko (Fukushima, Tschernobyl), hohe Baukosten, lange Bauzeiten. Gesellschaftlich kontrovers; keine eindeutige Antwort.',afb:3,sub:'phy'},
+  // DEUTSCH
+  {q:'Was ist eine Personification (Personifikation) als rhetorisches Mittel?',opts:['Unbelebtes/Abstraktes wird mit menschlichen Eigenschaften dargestellt','Ein Vergleich mit "wie"','Übertreibung zur Wirkungssteigerung','Wortwiederholung am Satzanfang'],ans:0,ex:'Personifikation: "Der Wind flüstert." Abstraktes (Wind) erhält menschliche Eigenschaft (flüstern). Andere Mittel: Metapher (direkte Übertragung ohne "wie"), Simile (Vergleich mit "wie"), Anaphora (Wiederholung).',afb:1,sub:'de'},
+  {q:'Was unterscheidet auktorialen von personalem Erzähler?',opts:['Auktorial: allwissend, außerhalb; personal: aus Perspektive einer Figur','Auktorial: Ich-Form; personal: Er-Form','Kein Unterschied','Personal: allwissend'],ans:0,ex:'Auktorialer Erzähler: Gottgleich, kennt alle Gedanken/Fakten, steht außerhalb. Personaler Erzähler: Sieht nur, was eine bestimmte Figur sieht/denkt. Ich-Erzähler: Figur erzählt selbst.',afb:1,sub:'de'},
+  {q:'Interpretiere: "Die Welt ist aus den Fugen geraten." Welches Stilmittel liegt vor?',opts:['Metapher (Welt als kaputte Maschine)','Personifikation','Hyperbel','Alliteration'],ans:0,ex:'Metapher: "Fugen" (technischer Begriff für Gelenke) wird übertragen auf den Zustand der Welt. Impliziert: Alles ist aus der Ordnung, instabil. Shakespeares Hamlet-Zitat.',afb:2,sub:'de'},
+  {q:'Analysiere: "Ich bin, wie ich bin." – Welche Funktion hat die Repetition?',opts:['Betont Unveränderlichkeit und Selbstbewusstsein der Figur','Drückt Unsicherheit aus','Zeigt Unwissenheit','Rein rhythmische Funktion'],ans:0,ex:'Repetition/Epanalepse: Wiederholung desselben Wortes. Hier: Betonung der Identität und Unveränderlichkeit. Deutung hängt immer vom Kontext ab.',afb:2,sub:'de'},
+  {q:'Was ist der Unterschied zwischen Thema und Motiv in einem literarischen Text?',opts:['Thema: übergeordneter Inhalt; Motiv: wiederkehrendes kleines Element','Thema und Motiv sind identisch','Motiv ist wichtiger als Thema','Thema ist nur in Gedichten relevant'],ans:0,ex:'Thema: übergeordnete Aussage/Fragestellung (z.B. "Entfremdung in der Moderne"). Motiv: wiederkehrendes konkretes Element (z.B. Spiegel, Wasser, Licht als Motiv). Motive illustrieren das Thema.',afb:1,sub:'de'},
+  {q:'Beurteile: Welche Epoche prägte Deutschland am stärksten literarisch – Romantik oder Expressionismus? (AFB III)',opts:['Begründetes Urteil mit Kriterien: Romantik (Volkslieder, Märchen, Nationalbew.) vs. Express. (Kriegserfahrung, Moderne)','Romantik immer','Expressionismus immer','Weder noch'],ans:0,ex:'AFB III: Kein "richtige" Antwort. Romantik (1795–1835): Volkslieder (Brentano), Märchen (Grimm), Nationalromantik → kulturelle Identitätsstiftung. Expressionismus (1910–1925): Reaktion auf Industrialisierung/WW1, Großstadtlyrik, Dehumanisierung. Urteil: je nach Kriterium (kulturelle Breite vs. literarische Innovation).',afb:3,sub:'de'},
+];
+
+// ==================== FLASHCARDS ====================
+var FLASHCARDS = [
+  {f:'Ableitungsregeln: Potenzregel',b:'(xⁿ)\' = n · xⁿ⁻¹\n\nBeispiele:\n(x⁵)\' = 5x⁴\n(x²)\' = 2x\n(x)\' = 1\n(c)\' = 0 (Konstante)',sub:'math'},
+  {f:'Produktregel der Ableitung',b:'(u · v)\' = u\' · v + u · v\'\n\nBeispiel:\nf(x) = x² · sin(x)\nf\'(x) = 2x · sin(x) + x² · cos(x)',sub:'math'},
+  {f:'Integration: Potenzregel',b:'∫xⁿ dx = xⁿ⁺¹/(n+1) + C\n(gilt für n ≠ −1)\n\nBeispiele:\n∫x² dx = x³/3 + C\n∫x dx = x²/2 + C\n∫1 dx = x + C',sub:'math'},
+  {f:'DNA-Struktur & Basenpaare',b:'DNA = Doppelhelix aus zwei antiparallelen Strängen\n\nBasenpaare:\n• Adenin (A) ↔ Thymin (T): 2 H-Brücken\n• Guanin (G) ↔ Cytosin (C): 3 H-Brücken\n\nRNA: statt T → Uracil (U)',sub:'bio'},
+  {f:'Mendelsche Gesetze',b:'1. Uniformitätsgesetz: F1-Generation uniform (AA × aa → Aa)\n\n2. Spaltungsgesetz: F2 im Verhältnis 3:1 (Aa × Aa → 1 AA : 2 Aa : 1 aa)\nPhänotyp: 3 dominant : 1 rezessiv\n\n3. Unabhängigkeitsgesetz: Merkmale auf verschiedenen Chromosomen werden unabhängig vererbt',sub:'bio'},
+  {f:'Weimarer Republik: Chronologie',b:'1919: Gründung, Weimarer Verfassung (11.8.)\n1923: Hyperinflation, Hitlerputsch\n1924–29: Goldene Zwanziger (Stresemann)\n1929: Weltwirtschaftskrise\n1930–33: Präsidialkabinette (Art. 48)\n1933: Hitler Reichskanzler (30.1.)',sub:'his'},
+  {f:'Ohmsches Gesetz & elektrische Leistung',b:'U = R · I\n\nU = Spannung (Volt, V)\nR = Widerstand (Ohm, Ω)\nI = Stromstärke (Ampere, A)\n\nElektrische Leistung:\nP = U · I = U²/R = I²·R\n(P in Watt, W)',sub:'phy'},
+  {f:'Abitur-Notenformel',b:'Note = (900 − Gesamtpunkte) ÷ 60 + 1\n\nMax. 900 Punkte total\n(Block I: max 600, Block II: max 300)\n\nMin. 300 Punkte zum Bestehen\n\nBeispiel:\n780 Punkte → (900−780)/60+1 = 2+1 = 3,0',sub:'math'},
+  {f:'Rhetorische Stilmittel',b:'Metapher: direkte Übertragung ("Zeit ist Geld")\nSimile: Vergleich mit "wie" ("mutig wie ein Löwe")\nPersonifikation: Unbelebtes mit menschl. Eigensch.\nAnaphora: Wdh. am Satzanfang ("Ich habe...")\nHyperbel: Übertreibung ("ewig warten")\nIronie: Gesagtes ≠ Gemeintes\nAlliteration: gleiche Anlaute ("Milch macht müde...")',sub:'de'},
+  {f:'Evolutionsfaktoren',b:'1. Mutation: zufällige Änderung des Erbguts\n2. Rekombination: Neukombination beim Crossing-over\n3. Selektion: Vorteilhafte Merkmale setzen sich durch\n4. Isolation: geographisch → genetische Drift\n5. Gendrift: Zufällige Allelhäufigkeitsänderung\n\nMerkhilfe: M-R-S-I-G',sub:'bio'},
+  {f:'Newton\'sche Gesetze',b:'1. Trägheitsgesetz: Ein Körper ohne Kraft bleibt in Ruhe oder gleichf. Bewegung\n\n2. Aktionsgesetz: F = m · a\n\n3. Reaktionsgesetz: Actio = Reactio\n(jede Kraft hat gleich große Gegenkraft)',sub:'phy'},
+  {f:'Photosynthese-Gleichung',b:'6 CO₂ + 6 H₂O + Lichtenergie →\nC₆H₁₂O₆ (Glucose) + 6 O₂\n\nOrt: Chloroplasten\nLichtreaktion: Thylakoidmembran (ATP, NADPH)\nDunkelreaktion/Calvin: Stroma (CO₂-Fixierung)',sub:'bio'},
+];
+
+var EXAMS = [
+  {state:'Bayern',sub:'Mathematik',year:2024,diff:'Mittelschwer',topics:['Analysis','Stochastik','Analytische Geometrie']},
+  {state:'NRW',sub:'Mathematik',year:2024,diff:'Schwer',topics:['Analysis','Stochastik','Analytische Geometrie']},
+  {state:'BaWü',sub:'Deutsch',year:2024,diff:'Mittelschwer',topics:['Lyrik-Analyse','Erörterung']},
+  {state:'Bayern',sub:'Biologie',year:2023,diff:'Leicht',topics:['Genetik','Ökologie']},
+  {state:'Hessen',sub:'Physik',year:2023,diff:'Schwer',topics:['Mechanik','Quantenphysik']},
+  {state:'NRW',sub:'Geschichte',year:2024,diff:'Mittelschwer',topics:['Weimarer Republik','Kalter Krieg']},
+  {state:'Bayern',sub:'Englisch',year:2024,diff:'Leicht',topics:['Reading','Essay Writing']},
+  {state:'Berlin',sub:'Chemie',year:2023,diff:'Schwer',topics:['Organische Chemie','Elektrochemie']},
+  {state:'Niedersachsen',sub:'Mathematik',year:2023,diff:'Mittelschwer',topics:['Analysis','Stochastik']},
+  {state:'BaWü',sub:'Physik',year:2023,diff:'Mittelschwer',topics:['Elektrodynamik','Schwingungen']},
+];
+
+var AI_REPLIES = {
+  math:'Super Frage zur Mathematik! Hier eine strukturierte Erklärung:\n\n📐 Ableitungsregeln im Überblick:\n• Potenzregel: (xⁿ)\' = n·xⁿ⁻¹\n• Produktregel: (u·v)\' = u\'·v + u·v\'\n• Kettenregel: [f(g(x))]\' = f\'(g(x))·g\'(x)\n\nBei der Integralrechnung gilt: ∫xⁿ dx = xⁿ⁺¹/(n+1)+C\n\nWelchen konkreten Aspekt möchtest du vertiefen?',
+  his:'Sehr gut, Geschichte ist ein wichtiges Abi-Fach!\n\n🏛️ Zur Weimarer Republik (1919–1933):\n\nKernthesen für AFB II/III:\n• Strukturelle Schwächen: Verhältniswahlrecht, Art. 48, antidemokratische Eliten\n• Kontingente Faktoren: Weltwirtschaftskrise 1929, Hitlers Geschick\n• NICHT zwangsläufig gescheitert! Stresemann-Phase zeigt Stabilisierungspotenzial\n\nNenne mir das konkrete Thema für eine detaillierte Erklärung.',
+  bio:'Biologie ist spannend! Hier die Grundlagen:\n\n🧬 Genetik-Kern:\n• DNA: Doppelhelix, Basenpaare A-T und G-C\n• Transkription: DNA→mRNA (Zellkern)\n• Translation: mRNA→Protein (Ribosom)\n\nMendelsche Regeln:\n1. F1 uniform (bei Reinerbigkeit der Eltern)\n2. F2 im Verhältnis 3:1 (Phänotyp)\n\nWelches Thema genauer erklären?',
+  phy:'Physik-Hilfe auf Abruf!\n\n⚛️ Quantenphysik kompakt:\n• Photoeffekt: E=h·f, Einstein erklärt Wellenverhalten von Photonen\n• de-Broglie: λ=h/(m·v) – Materie als Welle\n• Unschärfe: Δx·Δp ≥ ℏ/2 (Heisenberg)\n\nMechanik:\n• F=m·a (Newton 2)\n• Energieerhaltung: E_kin+E_pot=const.\n\nStelle deine spezifische Frage!',
+  default:'Sehr gute Frage! Ich erkläre das strukturiert:\n\n1️⃣ Grundbegriffe verstehen\n2️⃣ Regeln und Formeln lernen  \n3️⃣ Beispiele durcharbeiten\n4️⃣ Abitur-typische Aufgaben üben\n\nNenne mir das genaue Thema und dein Bundesland – dann passe ich die Erklärung an deinen Lehrplan an!',
+};
+
+var UNI_SECTIONS = [
+  {icon:'🎓',title:'Überblick: Zulassungssystem',content:'Deutschlands Hochschulzulassung hat zwei Wege:\n\n1. Stiftung für Hochschulzulassung (hochschulstart.de)\n→ Für bundesweit zulassungsbeschränkte Fächer: Medizin, Zahnmedizin, Pharmazie, Tiermedizin\n→ Bewerbung über hochschulstart.de (Frist: 15. Juli / 15. Januar)\n→ Quotenmodell: 20% NC-Quote, 20% Wartezeitquote, 60% Hochschuleignungsquote\n\n2. Direkte Hochschulbewerbung\n→ Meiste Studiengänge: Direkte Bewerbung an der Hochschule\n→ Örtlicher NC (schwankt jährlich)\n→ Plattform: uni-assist.de für internationale Bewerber'},
+  {icon:'📊',title:'NC verstehen & Chancen berechnen',content:'Der NC (Numerus Clausus) ist KEIN fester Wert – sondern der Notendurchschnitt des zuletzt Zugelassenen im Vorjahr.\n\nNC ≠ Garantie: Er schwankt jährlich je nach Bewerberlage!\n\nNC-Berechnung (hochschulstart):\n• Abiturdurchschnitt (als Basis)\n• Wartezeit: jedes Semester nach Abitur = 1 Wartesemester\n• Bonuspunkte: Berufsausbildung, Bundeswehr, FSJ können helfen\n\nTipps:\n✓ Bewerbe dich an mehreren Hochschulen\n✓ Ortspräferenz erhöht deine Chancen\n✓ Vorjahres-NC als Orientierung (nicht als Garantie)\n✓ hochschulstart.de zeigt deine Chancen an'},
+  {icon:'📅',title:'Bewerbungsfristen 2025/26',content:'Wintersemester (Beginn Oktober):\n• hochschulstart.de: 15. Juli\n• Andere Hochschulen: meist 15. Juli, manche 31. August\n\nSommersemester (Beginn April):\n• hochschulstart.de: 15. Januar\n• Andere: meist 15. Januar\n\n⚠️ WICHTIG: Fristen variieren je Hochschule!\nImmer die offizielle Webseite der Wunsch-Hochschule prüfen.\n\nEmpfehlung: Bewerbungen 2–4 Wochen vor Frist abschicken!'},
+  {icon:'🏥',title:'Medizin studieren (Hochschulstart)',content:'Medizin, Zahnmedizin, Pharmazie, Tiermedizin: Alle über hochschulstart.de\n\nZulassungskriterien:\n1. Abiturdurchschnitt (20% der Plätze)\n2. Wartezeit (20% der Plätze, aktuell ~10–14 Semester)\n3. Hochschuleignungsquote (60%): NC + Auswahlverfahren\n\nTMS (Test für Medizinische Studiengänge):\n→ Freiwilliger Test (April/Mai)\n→ Gutes Ergebnis kann NC um 0,5–1,0 verbessern!\n→ Anmeldung: tms-info.org\n\nAlternativen:\n• Österreich: kein NC, aber Aufnahmetest (MedAT)\n• Niederlande/Ungarn: englischsprachige Studiengänge'},
+  {icon:'💰',title:'Stipendien & Finanzierung (BAföG)',content:'Stipendiengeber:\n\n🔵 Begabtenförderung (nach Leistung + Engagement):\n• Studienstiftung des deutschen Volkes (SDV)\n• Heinrich Böll, Friedrich Ebert, Konrad Adenauer Stiftungen\n• Deutschlandstipendium: 300€/Monat, hochschulgebunden\n• DAAD: für Auslandsstudium/-praktikum\n\n🟡 BAföG (staatlich, einkommensabhängig):\n• Max. ~950€/Monat (2025)\n• 50% Zuschuss + 50% zinsloses Darlehen\n• Antrag: beim Studierendenwerk!\n• Auch für Auslandssemester möglich\n\nBewerbungszeit: 6–12 Monate vor Studienstart!'},
+  {icon:'✍️',title:'Motivationsschreiben & Interview',content:'Motivationsschreiben (1–2 Seiten):\n\n✓ Warum dieses Fach? (konkret, nicht "seit der Kindheit")\n✓ Warum diese Hochschule? (Forschung, Lehrpersonen, Stadt)\n✓ Was bringst du mit? (Praktika, Ehrenamt, Projekte)\n✓ Berufliches Ziel (realistisch und durchdacht)\n\nHäufige Fehler:\n✗ Zu allgemein ("Ich interessiere mich schon immer...")\n✗ Zu lang (>2 Seiten)\n✗ Rechtschreib-/Grammatikfehler\n\nAuswahlgespräch:\n• Fachliche Grundkenntnisse zeigen\n• Aktuelle Entwicklungen im Fach kennen\n• Authentisch und strukturiert antworten'},
+];
+
+// ==================== DOM HELPERS ====================
+function mk(html) { var d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild||d; }
+function go(page,extra){ S.page=page; if(extra){for(var k in extra)S[k]=extra[k];} render(); }
+function setTab(t){ S.tab=t; render(); }
+function render(){
+  var app=document.getElementById('app');
+  while(app.firstChild)app.removeChild(app.firstChild);
+  document.body.className=S.dark?'dark':'';
+  app.appendChild(buildPage());
+}
+function buildPage(){
+  if(S.page==='landing') return buildLanding();
+  if(S.page==='auth')    return buildAuth();
+  if(S.page==='onboarding') return buildOnboarding();
+  return buildMain();
+}
+function getRules(){ return BL_RULES[(S.user&&S.user.bundesland)||'Nordrhein-Westfalen']||BL_RULES['Nordrhein-Westfalen']; }
+function isBayern(){ return (S.user&&S.user.bundesland)==='Bayern'; }
+
+// ==================== CALCULATOR LOGIC ====================
+function calcBlockI(){
+  initCalcDefaults();
+  var subjects=S.calcSubjects;
+  var lkDoubled=0;
+  var wSum=0, wCount=0;
+  subjects.forEach(function(sub){
+    var isDoubled=sub.lk&&lkDoubled<2;
+    if(sub.lk) lkDoubled++;
+    var w=isDoubled?2:1;
+    sub.grades.forEach(function(g){
+      if(g!==''&&g!==null&&!isNaN(+g)){
+        wSum+=Math.min(15,Math.max(0,+g))*w;
+        wCount+=w;
+      }
+    });
+  });
+  if(wCount===0) return 0;
+  return Math.min(600,Math.round((wSum/wCount)*40));
+}
+function calcSeminarScore(sem){
+  var s=sem.schriftl, p=sem.praes;
+  if(s===''||p===''||isNaN(+s)||isNaN(+p)) return null;
+  return Math.round((Math.min(15,+s)*3+Math.min(15,+p)*1)/2);
+}
+function calcBlockII(){
+  initCalcDefaults();
+  var exams=S.calcExams.filter(function(e){return e.grade!==''&&!isNaN(+e.grade);});
+  if(exams.length===0) return 0;
+  var factor=exams.length>=5?4:5;
+  var total=exams.reduce(function(sum,e){return sum+Math.min(15,Math.max(0,+e.grade))*factor;},0);
+  return Math.min(300,total);
+}
+function calcResult(){
+  var b1=calcBlockI();
+  var semBonus=0;
+  if(isBayern()&&S.calcSeminarEnabled){
+    S.calcSeminar.forEach(function(sem){var sc=calcSeminarScore(sem);if(sc!==null)semBonus+=sc;});
+  }
+  var blockI=Math.min(600,b1+semBonus);
+  var blockII=calcBlockII();
+  var total=blockI+blockII;
+  if(total<1) return null;
+  var grade=Math.max(1.0,Math.min(4.0,(900-total)/60+1));
+  var lkCount=S.calcSubjects.filter(function(s){return s.lk;}).length;
+  var defizite=0;
+  S.calcSubjects.forEach(function(sub){
+    sub.grades.forEach(function(g){if(g!==''&&!isNaN(+g)&&+g<5)defizite++;});
+  });
+  return {blockI:blockI,blockII:blockII,total:total,grade:grade.toFixed(1).replace('.',','),passed:total>=300&&blockI>=200&&blockII>=100,defizite:defizite,semBonus:semBonus};
+}
+function getLkDoubledStatus(){
+  var count=0;
+  var status={};
+  S.calcSubjects.forEach(function(sub){
+    if(sub.lk){
+      count++;
+      status[sub.id]=count<=2?'doubled':'lk_only';
+    } else {
+      status[sub.id]='gk';
+    }
+  });
+  return status;
+}
+
+// ==================== LANDING ====================
+function buildLanding(){
+  var wrap=document.createElement('div');wrap.style.cssText='min-height:100vh;overflow-x:hidden;background:'+(S.dark?'#0f172a':'#f8fafc');
+  var nav=document.createElement('nav');nav.style.cssText='position:sticky;top:0;z-index:50;background:rgba(29,78,216,.96);backdrop-filter:blur(10px);padding:16px 24px;display:flex;justify-content:space-between;align-items:center';
+  nav.innerHTML='<div style="display:flex;align-items:center;gap:10px;color:#fff"><span style="font-size:22px">🎓</span><span style="font-weight:800;font-size:18px">Jetzt Abitur!</span></div>';
+  var navR=mk('<div style="display:flex;gap:10px;align-items:center"></div>');
+  var dk=document.createElement('button');dk.style.cssText='background:rgba(255,255,255,.15);border:none;color:#fff;border-radius:10px;padding:8px 12px;cursor:pointer;font-size:16px';dk.textContent=S.dark?'☀️':'🌙';dk.onclick=function(){S.dark=!S.dark;render();};
+  var lg=document.createElement('button');lg.style.cssText='background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;border-radius:10px;padding:8px 18px;cursor:pointer;font-weight:600;font-size:14px';lg.textContent='Login';lg.onclick=function(){go('auth');};
+  navR.appendChild(dk);navR.appendChild(lg);nav.appendChild(navR);wrap.appendChild(nav);
+  var hero=document.createElement('div');hero.className='hero-bg';hero.style.cssText='padding:80px 24px;text-align:center;color:#fff';
+  hero.innerHTML='<div style="display:inline-flex;align-items:center;gap:8px;background:rgba(255,255,255,.15);padding:8px 20px;border-radius:100px;font-size:13px;font-weight:600;margin-bottom:28px">🚀 Die #1 Plattform für Abitur-Vorbereitung</div><h1 style="font-size:clamp(36px,8vw,64px);font-weight:900;margin:0 0 20px;line-height:1.1">Dein Abitur.<br><span style="color:#93c5fd">Deine Regeln.</span></h1><p style="font-size:clamp(15px,3vw,18px);opacity:.9;max-width:540px;margin:0 auto 36px;line-height:1.7">Mit vollständigen Lerneinheiten (Analysis, Stochastik, Genetik...), dem korrekten Abi-Rechner für alle 16 Bundesländer und KI-Unterstützung.</p>';
+  var ctaRow=mk('<div style="display:flex;gap:14px;flex-wrap:wrap;justify-content:center;margin-bottom:60px"></div>');
+  var c1=document.createElement('button');c1.className='btn-blue';c1.style.cssText='font-size:16px;padding:15px 32px;background:#fff;color:#1d4ed8';c1.textContent='✨ Kostenlos starten';c1.onclick=function(){go('auth');};
+  var c2=document.createElement('button');c2.style.cssText='padding:15px 32px;background:rgba(255,255,255,.15);color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:12px;font-size:16px;font-weight:700;cursor:pointer';c2.textContent='▶ Demo ansehen';c2.onclick=function(){S.user={name:'Demo Student',email:'demo@abitur.de',bundesland:'Nordrhein-Westfalen',premium:false};go('main');};
+  ctaRow.appendChild(c1);ctaRow.appendChild(c2);hero.appendChild(ctaRow);
+  var st=mk('<div style="display:flex;gap:40px;flex-wrap:wrap;justify-content:center"></div>');
+  [['15 Fächer','mit echtem Inhalt'],['16','Bundesländer'],['40+','Lernkarten'],['Block I+II','Korrekte Formel']].forEach(function(s){st.appendChild(mk('<div style="text-align:center"><div style="font-size:26px;font-weight:900">'+s[0]+'</div><div style="font-size:12px;opacity:.75;margin-top:2px">'+s[1]+'</div></div>'));});
+  hero.appendChild(st);wrap.appendChild(hero);
+  var fSec=document.createElement('div');fSec.style.cssText='padding:72px 24px;max-width:1100px;margin:0 auto';
+  fSec.innerHTML='<h2 style="text-align:center;font-size:clamp(24px,5vw,36px);font-weight:800;margin-bottom:10px">Alles was du brauchst</h2><p style="text-align:center;color:#64748b;margin-bottom:44px;font-size:15px">Vollständige Lerneinheiten, korrekter Rechner, AFB-Aufgaben</p>';
+  var fGrid=mk('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px"></div>');
+  [['📊','Abi-Rechner (korrekt)','Block I (gewichtet ×2 für 2 LKs) + Block II (4×5 oder 5×4), proportional auf 900 Punkte skaliert. Für alle 16 Bundesländer.'],
+   ['📚','Vollständige Fächer','Analysis, Stochastik, Vektorgeometrie, Genetik, Evolution, Mechanik, Quantenphysik – mit Formeln, Beispielen und Abi-Tipps.'],
+   ['🤖','KI-Tutor','Erklärt Themen, beantwortet AFB I–III Fragen, erstellt individuelle Lernpläne für dein Bundesland.'],
+   ['✏️','AFB I/II/III Aufgaben','Echte Abituraufgaben auf allen drei Anforderungsniveaus – mit vollständigen Musterlösungen.'],
+  ].forEach(function(f){var c=document.createElement('div');c.className='card';c.style.padding='24px';c.innerHTML='<div style="font-size:34px;margin-bottom:12px">'+f[0]+'</div><h3 style="font-weight:700;font-size:16px;margin-bottom:8px">'+f[1]+'</h3><p style="color:#64748b;font-size:13px;line-height:1.6">'+f[2]+'</p>';fGrid.appendChild(c);});
+  fSec.appendChild(fGrid);wrap.appendChild(fSec);
+  wrap.appendChild(mk('<footer style="padding:28px 24px;text-align:center;color:#94a3b8;font-size:13px;border-top:1px solid #e2e8f0"><div style="font-weight:700;margin-bottom:6px">🎓 Jetzt Abitur!</div><div>© 2025 Jetzt Abitur! · Datenschutz · Impressum · AGB</div></footer>'));
+  return wrap;
+}
+
+// ==================== AUTH ====================
+function buildAuth(){
+  var wrap=document.createElement('div');wrap.className='hero-bg';wrap.style.cssText='min-height:100vh;display:flex;align-items:center;justify-content:center;padding:20px';
+  var box=document.createElement('div');box.className='modal-box';box.style.position='relative';
+  var bk=document.createElement('button');bk.style.cssText='position:absolute;top:16px;left:16px;background:none;border:none;cursor:pointer;color:#94a3b8;font-size:13px';bk.textContent='← Zurück';bk.onclick=function(){go('landing');};box.appendChild(bk);
+  box.innerHTML+='<div style="text-align:center;margin-bottom:22px"><div style="font-size:40px">🎓</div><div style="font-weight:800;font-size:20px;margin-top:8px">Jetzt Abitur!</div><div style="color:#64748b;font-size:13px;margin-top:4px">'+(S.authMode==='login'?'Willkommen zurück!':'Starte jetzt durch!')+'</div></div>';
+  var tabs=mk('<div style="display:flex;border-bottom:2px solid #e2e8f0;margin-bottom:20px"></div>');
+  ['Login','Registrieren'].forEach(function(label,i){
+    var active=(i===0&&S.authMode==='login')||(i===1&&S.authMode==='register');
+    var t=document.createElement('button');t.style.cssText='flex:1;padding:10px;font-weight:700;font-size:14px;border:none;background:none;cursor:pointer;color:'+(active?'#1d4ed8':'#94a3b8')+';border-bottom:'+(active?'2px solid #1d4ed8':'2px solid transparent')+';margin-bottom:-2px';t.textContent=label;
+    var m=i===0?'login':'register';t.onclick=function(){S.authMode=m;render();};tabs.appendChild(t);
+  });
+  box.appendChild(tabs);
+  function field(lbl,type,ph){var w=document.createElement('div');w.style.marginBottom='12px';var l=document.createElement('label');l.style.cssText='font-size:13px;font-weight:600;color:#374151;display:block;margin-bottom:5px';l.textContent=lbl;var i=document.createElement('input');i.type=type;i.placeholder=ph;i.className='wide-inp';w.appendChild(l);w.appendChild(i);return w;}
+  var nameField, emailField, pwField;
+  if(S.authMode==='register'){nameField=field('Name','text','Dein vollständiger Name');box.appendChild(nameField);}
+  emailField=field('E-Mail','email','deine@email.de');box.appendChild(emailField);
+  pwField=field('Passwort','password','••••••••');box.appendChild(pwField);
+  var errBox=document.createElement('div');errBox.style.cssText='display:none;background:#fee2e2;color:#dc2626;font-size:13px;padding:10px 12px;border-radius:8px;margin-bottom:12px';box.appendChild(errBox);
+  function showErr(msg){errBox.textContent=msg;errBox.style.display='block';}
+  var mb=document.createElement('button');mb.className='btn-blue';mb.style.cssText='width:100%;margin-top:10px;margin-bottom:12px';mb.textContent=S.authMode==='login'?'🔐 Anmelden':'🚀 Konto erstellen';
+  mb.onclick=async function(){
+    if(!sb){showErr('Supabase ist noch nicht konfiguriert (siehe SUPABASE_URL / SUPABASE_ANON_KEY im Code).');return;}
+    var email=emailField.querySelector('input').value.trim();
+    var pw=pwField.querySelector('input').value;
+    var name=nameField?nameField.querySelector('input').value.trim():'';
+    if(!email||!pw){showErr('Bitte E-Mail und Passwort ausfüllen.');return;}
+    mb.disabled=true;mb.textContent='Bitte warten...';
+    var result;
+    if(S.authMode==='register'){
+      result=await sb.auth.signUp({email:email,password:pw,options:{data:{full_name:name}}});
+    } else {
+      result=await sb.auth.signInWithPassword({email:email,password:pw});
+    }
+    mb.disabled=false;mb.textContent=S.authMode==='login'?'🔐 Anmelden':'🚀 Konto erstellen';
+    if(result.error){showErr(result.error.message);return;}
+    if(S.authMode==='register' && result.data.user && !result.data.session){
+      showErr('Konto erstellt! Bitte bestätige deine E-Mail über den Link, den wir dir geschickt haben, und logge dich danach ein.');
+      return;
+    }
+    var u=result.data.user;
+    S.user={id:u.id,name:(u.user_metadata&&u.user_metadata.full_name)||name||u.email.split('@')[0],email:u.email,bundesland:'',premium:false};
+    go('onboarding');
+  };
+  box.appendChild(mb);
+  var gb=document.createElement('button');gb.className='btn-gray';gb.style.cssText='width:100%;margin-bottom:16px';gb.textContent='🌐 Mit Google fortfahren';
+  gb.onclick=async function(){
+    if(!sb){showErr('Supabase ist noch nicht konfiguriert.');return;}
+    var result=await sb.auth.signInWithOAuth({provider:'google'});
+    if(result.error)showErr(result.error.message+' (Google-Login muss zusätzlich im Supabase-Dashboard unter Authentication > Providers aktiviert werden.)');
+  };
+  box.appendChild(gb);
+  var sw=document.createElement('div');sw.style.cssText='text-align:center;font-size:13px;color:#64748b';var swL=document.createElement('span');swL.style.cssText='color:#1d4ed8;font-weight:700;cursor:pointer';swL.textContent=S.authMode==='login'?'Registrieren':'Anmelden';swL.onclick=function(){S.authMode=S.authMode==='login'?'register':'login';render();};sw.appendChild(document.createTextNode(S.authMode==='login'?'Noch kein Konto? ':'Schon registriert? '));sw.appendChild(swL);box.appendChild(sw);
+  box.appendChild(bk);wrap.appendChild(box);return wrap;
+}
+
+// ==================== ONBOARDING ====================
+function buildOnboarding(){
+  var steps=['Bundesland','Schulform','Abiturjahr','Leistungskurse','Weitere Kurse'];
+  var step=S.ob.step;
+  var wrap=document.createElement('div');wrap.className='hero-bg';wrap.style.cssText='min-height:100vh;display:flex;align-items:center;justify-content:center;padding:24px';
+  var box=document.createElement('div');box.className='modal-box';
+  var ph=document.createElement('div');ph.style.marginBottom='24px';
+  ph.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:8px"><span style="font-size:12px;font-weight:600;color:#64748b">Schritt '+(step+1)+' von '+steps.length+'</span><span style="font-size:12px;font-weight:700;color:#1d4ed8">'+steps[step]+'</span></div><div class="pbar"><div class="pfill" style="width:'+Math.round((step+1)/steps.length*100)+'%"></div></div>';
+  box.appendChild(ph);
+  if(step===0){
+    box.innerHTML+='<h2 style="font-weight:800;font-size:20px;margin-bottom:6px">🏛️ Wähle dein Bundesland</h2><p style="color:#64748b;font-size:13px;margin-bottom:16px">Der Abi-Rechner und die Lernpläne werden für dein Bundesland angepasst.</p>';
+    var g=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;max-height:290px;overflow-y:auto"></div>');
+    BL_NAMES.forEach(function(bl){var sel=S.ob.bl===bl;var b=document.createElement('button');b.style.cssText='padding:9px 12px;border-radius:10px;border:2px solid '+(sel?'#1d4ed8':'#e2e8f0')+';background:'+(sel?'#eff6ff':'transparent')+';cursor:pointer;font-weight:600;font-size:12px;text-align:left;color:'+(sel?'#1d4ed8':'#374151');b.textContent=bl;b.onclick=function(){S.ob.bl=bl;render();};g.appendChild(b);});
+    box.appendChild(g);
+    if(S.ob.bl){var r=BL_RULES[S.ob.bl];box.appendChild(mk('<div style="background:#eff6ff;border-radius:10px;padding:10px 12px;margin-top:12px;font-size:12px;color:#1d4ed8"><b>'+S.ob.bl+':</b> '+r.g8g9+' · '+r.oberstufe+'</div>'));}
+  } else if(step===1){
+    box.innerHTML+='<h2 style="font-weight:800;font-size:20px;margin-bottom:6px">🏫 Schulform</h2><p style="color:#64748b;font-size:13px;margin-bottom:16px">Welche Schulform besuchst du?</p>';
+    ['Gymnasium','Gesamtschule','Berufsschule (Abitur)','Abendgymnasium'].forEach(function(s){var sel=S.ob.school===s;var b=document.createElement('button');b.style.cssText='width:100%;padding:13px 16px;border-radius:12px;border:2px solid '+(sel?'#1d4ed8':'#e2e8f0')+';background:'+(sel?'#eff6ff':'transparent')+';cursor:pointer;font-weight:600;font-size:14px;text-align:left;margin-bottom:8px;color:'+(sel?'#1d4ed8':'#374151');b.textContent=s;b.onclick=function(){S.ob.school=s;render();};box.appendChild(b);});
+  } else if(step===2){
+    box.innerHTML+='<h2 style="font-weight:800;font-size:20px;margin-bottom:6px">📅 Abiturjahr</h2><p style="color:#64748b;font-size:13px;margin-bottom:16px">Wann machst du dein Abitur?</p>';
+    ['2025','2026','2027','2028'].forEach(function(y){var sel=S.ob.year===y;var b=document.createElement('button');b.style.cssText='width:100%;padding:13px 16px;border-radius:12px;border:2px solid '+(sel?'#1d4ed8':'#e2e8f0')+';background:'+(sel?'#eff6ff':'transparent')+';cursor:pointer;font-weight:600;font-size:14px;text-align:left;margin-bottom:8px;color:'+(sel?'#1d4ed8':'#374151');b.textContent='Abitur '+y;b.onclick=function(){S.ob.year=y;render();};box.appendChild(b);});
+  } else if(step===3){
+    var r3=getRules();
+    box.innerHTML+='<h2 style="font-weight:800;font-size:20px;margin-bottom:6px">⭐ '+r3.lkTerm+'e wählen</h2><p style="color:#64748b;font-size:13px;margin-bottom:6px">Wähle bis zu 3 Leistungskurse. Nur die ersten 2 werden doppelt gewichtet.</p>';
+    var g3=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;max-height:260px;overflow-y:auto"></div>');
+    SUBJECTS.forEach(function(sub){var sel=S.ob.lk.indexOf(sub.id)>=0;var b=document.createElement('button');b.style.cssText='padding:10px;border-radius:10px;border:2px solid '+(sel?sub.col:'#e2e8f0')+';background:'+(sel?sub.col+'18':'transparent')+';cursor:pointer;font-weight:600;font-size:12px;text-align:center;color:'+(sel?sub.col:'#374151');b.textContent=sub.icon+' '+sub.name;b.onclick=function(){var idx=S.ob.lk.indexOf(sub.id);if(idx>=0)S.ob.lk.splice(idx,1);else if(S.ob.lk.length<3)S.ob.lk.push(sub.id);render();};g3.appendChild(b);});
+    box.appendChild(g3);
+    if(S.ob.lk.length>0)box.appendChild(mk('<div style="font-size:11px;color:#1d4ed8;margin-top:8px">✓ Ausgewählt ('+S.ob.lk.length+'): '+S.ob.lk.map(function(id){var s=SUBJECTS.find(function(x){return x.id===id;});return s?s.name:id;}).join(', ')+'</div>'));
+  } else {
+    box.innerHTML+='<h2 style="font-weight:800;font-size:20px;margin-bottom:6px">📚 Weitere Fächer</h2><p style="color:#64748b;font-size:13px;margin-bottom:14px">Welche weiteren Kurse belegst du?</p>';
+    var g4=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:7px;max-height:270px;overflow-y:auto"></div>');
+    SUBJECTS.forEach(function(sub){var sel=S.ob.subs.indexOf(sub.id)>=0;var b=document.createElement('button');b.style.cssText='padding:9px;border-radius:10px;border:2px solid '+(sel?sub.col:'#e2e8f0')+';background:'+(sel?sub.col+'18':'transparent')+';cursor:pointer;font-weight:600;font-size:12px;text-align:center;color:'+(sel?sub.col:'#374151');b.textContent=sub.icon+' '+sub.name;b.onclick=function(){var idx=S.ob.subs.indexOf(sub.id);if(idx>=0)S.ob.subs.splice(idx,1);else S.ob.subs.push(sub.id);render();};g4.appendChild(b);});
+    box.appendChild(g4);
+  }
+  var br=mk('<div style="display:flex;gap:12px;margin-top:22px"></div>');
+  if(step>0){var bkB=document.createElement('button');bkB.className='btn-gray';bkB.style.flex='1';bkB.textContent='← Zurück';bkB.onclick=function(){S.ob.step--;render();};br.appendChild(bkB);}
+  var nx=document.createElement('button');nx.className='btn-blue';nx.style.flex='2';nx.textContent=step===steps.length-1?'🎉 Loslegen!':'Weiter →';
+  nx.onclick=function(){if(step===steps.length-1){if(S.user)S.user.bundesland=S.ob.bl||'Nordrhein-Westfalen';initCalcDefaults();go('main');}else{S.ob.step++;render();}};
+  br.appendChild(nx);box.appendChild(br);wrap.appendChild(box);return wrap;
+}
+
+// ==================== MAIN APP ====================
+function buildMain(){
+  var bg=S.dark?'#0f172a':'#f8fafc';
+  var wrap=document.createElement('div');wrap.style.cssText='min-height:100vh;background:'+bg+';max-width:430px;margin:0 auto;position:relative;display:flex;flex-direction:column';
+  var tb=document.createElement('div');tb.style.cssText='position:sticky;top:0;z-index:30;background:'+bg+';padding:14px 18px 8px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid '+(S.dark?'#1e293b':'#e2e8f0');
+  var titles={home:'🏠 Dashboard',calc:'📊 Abi-Rechner',subs:'📚 Fächer',quiz:'✏️ Üben',cards:'🃏 Karteikarten',ai:'🤖 KI-Tutor',plan:'📅 Lernplan',exams:'📄 Prüfungen',prog:'📈 Fortschritt'};
+  var tEl=document.createElement('div');tEl.style.cssText='font-weight:800;font-size:16px';tEl.textContent=titles[S.tab]||'Jetzt Abitur!';
+  var topR=mk('<div style="display:flex;gap:8px;align-items:center"></div>');
+  topR.appendChild(mk('<div style="display:flex;align-items:center;gap:4px;background:'+(S.dark?'#1e293b':'#fff')+';padding:6px 12px;border-radius:100px;font-size:12px;font-weight:700;box-shadow:0 1px 4px rgba(0,0,0,.08)">🔥 '+S.streak+'</div>'));
+  var dk2=document.createElement('button');dk2.style.cssText='background:'+(S.dark?'#1e293b':'#fff')+';border:none;border-radius:10px;width:34px;height:34px;cursor:pointer;font-size:16px;box-shadow:0 1px 4px rgba(0,0,0,.08)';dk2.textContent=S.dark?'☀️':'🌙';dk2.onclick=function(){S.dark=!S.dark;render();};
+  var av=document.createElement('div');av.style.cssText='width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#1d4ed8,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:13px;cursor:pointer';av.textContent=(S.user&&S.user.name)?S.user.name.charAt(0):'U';av.onclick=function(){S.profileModal=true;render();};
+  topR.appendChild(dk2);topR.appendChild(av);tb.appendChild(tEl);tb.appendChild(topR);wrap.appendChild(tb);
+  var xpPct=Math.round((S.xp%1000)/10);
+  var xpW=document.createElement('div');xpW.style.cssText='padding:5px 18px 7px;background:'+bg;
+  xpW.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:3px"><span style="font-size:10px;font-weight:600;color:#94a3b8">Lv.'+S.level+' · '+S.xp+' XP</span><span style="font-size:10px;color:#94a3b8">'+(1000-S.xp%1000)+' bis Lv.'+(S.level+1)+'</span></div><div style="height:4px;background:'+(S.dark?'#1e293b':'#e2e8f0')+';border-radius:2px"><div style="width:'+xpPct+'%;height:100%;border-radius:2px;background:linear-gradient(90deg,#f59e0b,#f97316)"></div></div>';
+  wrap.appendChild(xpW);
+  var content=document.createElement('div');content.className='fade-up no-scroll';content.style.cssText='flex:1;overflow-y:auto;padding-bottom:76px';
+  if(S.tab==='home')  content.appendChild(buildHome());
+  if(S.tab==='calc')  content.appendChild(buildCalc());
+  if(S.tab==='subs')  content.appendChild(buildSubs());
+  if(S.tab==='quiz')  content.appendChild(buildQuiz());
+  if(S.tab==='cards') content.appendChild(buildCards());
+  if(S.tab==='ai')    content.appendChild(buildAI());
+  if(S.tab==='plan')  content.appendChild(buildPlan());
+  if(S.tab==='exams') content.appendChild(buildExams());
+  if(S.tab==='prog')  content.appendChild(buildProg());
+  wrap.appendChild(content);
+  wrap.appendChild(buildNav());
+  if(S.premModal) wrap.appendChild(buildPremModal());
+  if(S.profileModal) wrap.appendChild(buildProfileModal());
+  return wrap;
+}
+
+function buildNav(){
+  var bg=S.dark?'#0f172a':'#fff';
+  var nav=document.createElement('div');nav.style.cssText='position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:100%;max-width:430px;background:'+bg+';border-top:1px solid '+(S.dark?'#1e293b':'#e2e8f0')+';padding:5px 2px 10px;display:flex;justify-content:space-around;z-index:30';
+  [{id:'home',icon:'🏠',lbl:'Home'},{id:'calc',icon:'📊',lbl:'Rechner'},{id:'subs',icon:'📚',lbl:'Fächer'},{id:'quiz',icon:'✏️',lbl:'Üben'},{id:'ai',icon:'🤖',lbl:'KI'},{id:'prog',icon:'📈',lbl:'Stats'}].forEach(function(item){
+    var active=S.tab===item.id;var col=active?(S.dark?'#60a5fa':'#1d4ed8'):(S.dark?'#64748b':'#94a3b8');
+    var btn=document.createElement('button');btn.className='nav-item'+(active?' active':'');btn.style.color=col;
+    var icon=document.createElement('div');icon.className='nav-icon';icon.textContent=item.icon;
+    var lbl=document.createElement('span');lbl.style.cssText='font-size:10px;font-weight:600;margin-top:1px';lbl.textContent=item.lbl;
+    btn.appendChild(icon);btn.appendChild(lbl);btn.onclick=function(){setTab(item.id);};nav.appendChild(btn);
+  });
+  return nav;
+}
+
+// ==================== HOME ====================
+function buildHome(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var hour=new Date().getHours();var greet=hour<12?'Morgen':(hour<18?'Tag':'Abend');
+  var name=(S.user&&S.user.name)?S.user.name.split(' ')[0]:'Schüler';
+  var bl=(S.user&&S.user.bundesland)||'NRW';
+  var r=getRules();
+  d.innerHTML='<div style="margin-bottom:16px"><h2 style="font-weight:800;font-size:20px;margin-bottom:3px">Guten '+greet+', '+name+'! 👋</h2><p style="color:#64748b;font-size:12px;margin:0">'+bl+' · '+r.g8g9+'</p></div>';
+  var res=calcResult();
+  var gc=document.createElement('div');gc.style.cssText='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:18px;padding:20px;margin-bottom:16px;cursor:pointer';
+  gc.innerHTML='<div style="font-size:11px;opacity:.8;margin-bottom:3px">Voraussichtlicher Abi-Schnitt</div><div style="font-size:44px;font-weight:900;line-height:1.1;margin-bottom:6px">'+(res?res.grade:'–')+'</div>';
+  var gd=mk('<div style="display:flex;gap:12px;flex-wrap:wrap"></div>');
+  if(res){gd.appendChild(mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:5px 10px;font-size:12px">Block I: <b>'+res.blockI+'/600</b></div>'));gd.appendChild(mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:5px 10px;font-size:12px">Block II: <b>'+res.blockII+'/300</b></div>'));gd.appendChild(mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:5px 10px;font-size:12px">Gesamt: <b>'+res.total+'/900</b></div>'));}
+  else{gd.appendChild(mk('<div style="font-size:12px;opacity:.8">Noten im Rechner eintragen →</div>'));}
+  gc.appendChild(gd);gc.onclick=function(){setTab('calc');};d.appendChild(gc);
+  var sg=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px"></div>');
+  [['🔥','12 Tage','Streak'],['⭐','+180 XP','Heute'],['📚','15 Fächer','Verfügbar'],['🃏','12 Karten','Fällig']].forEach(function(x){var c=document.createElement('div');c.className='card';c.style.padding='14px';c.innerHTML='<div style="font-size:22px;margin-bottom:4px">'+x[0]+'</div><div style="font-weight:800;font-size:17px">'+x[1]+'</div><div style="font-size:11px;color:#94a3b8;margin-top:1px">'+x[2]+'</div>';sg.appendChild(c);});
+  d.appendChild(sg);
+  var qh=document.createElement('h3');qh.style.cssText='font-weight:700;font-size:15px;margin-bottom:10px';qh.textContent='⚡ Schnellstart';d.appendChild(qh);
+  var qa=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px"></div>');
+  [['📊','Noten eintragen','calc','#1d4ed8'],['📚','Thema lernen','subs','#7c3aed'],['✏️','AFB Aufgaben','quiz','#059669'],['🤖','KI fragen','ai','#d97706']].forEach(function(x){var b=document.createElement('button');b.style.cssText='padding:14px;border-radius:12px;border:none;background:'+x[3]+'18;color:'+x[3]+';cursor:pointer;font-weight:700;font-size:13px;display:flex;flex-direction:column;align-items:center;gap:4px;width:100%';b.innerHTML='<span style="font-size:26px">'+x[0]+'</span><span>'+x[1]+'</span>';b.onclick=function(){setTab(x[2]);};qa.appendChild(b);});
+  d.appendChild(qa);
+  return d;
+}
+
+// ==================== CALCULATOR ====================
+function buildCalc(){
+  initCalcDefaults();
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var r=getRules();var bl=(S.user&&S.user.bundesland)||'NRW';
+  var res=calcResult();
+
+  // Header
+  var hdr=document.createElement('div');hdr.style.cssText='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:18px;padding:20px;margin-bottom:14px';
+  hdr.innerHTML='<div style="font-size:11px;opacity:.75;margin-bottom:4px">'+bl+' · '+r.g8g9+'</div><div style="font-size:44px;font-weight:900;line-height:1;margin-bottom:10px">'+(res?res.grade:'–')+'</div>';
+  if(res){
+    var blocks=mk('<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px"></div>');
+    [['Block I',res.blockI+'/600'],['Block II',res.blockII+'/300'],['Gesamt',res.total+'/900']].forEach(function(b){blocks.appendChild(mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:8px;text-align:center"><div style="font-weight:800;font-size:13px">'+b[1]+'</div><div style="font-size:10px;opacity:.75">'+b[0]+'</div></div>'));});
+    hdr.appendChild(blocks);
+    var passEl=mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:6px 10px;font-size:12px;display:flex;gap:10px">'+(res.passed?'✅ Bestanden':'⚠️ Noch nicht bestanden')+' · Defizite: '+res.defizite+'</div>');
+    hdr.appendChild(passEl);
+  }
+  d.appendChild(hdr);
+
+  // Info box for BL rules
+  d.appendChild(mk('<div style="background:'+(S.dark?'#1e293b':'#fff')+';border:1.5px solid '+(S.dark?'#334155':'#e2e8f0')+';border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:12px;color:#64748b">ℹ️ <b>'+bl+':</b> '+r.info+'<br><br>📐 <b>Formel:</b> Block I = (Σ gewichtete Noten / Σ Gewichte) × 40 (max 600) | Block II: 4 Fächer×5 oder 5 Fächer×4 (max 300)</div>'));
+
+  // Tabs
+  var tabRow=mk('<div style="display:flex;gap:8px;margin-bottom:14px"></div>');
+  ['block1','block2'].forEach(function(t,i){
+    var active=S.calcTab===t;var b=document.createElement('button');b.className='tab-btn '+(active?'active':'inactive');b.textContent=i===0?'Block I: Halbjahresnoten':'Block II: Abiturprüfungen';b.onclick=function(){S.calcTab=t;render();};tabRow.appendChild(b);
+  });
+  d.appendChild(tabRow);
+
+  if(S.calcTab==='block1'){
+    // Header row
+    var colH=mk('<div style="display:flex;gap:4px;padding:0 4px;margin-bottom:6px;font-size:10px;font-weight:700;color:#94a3b8"></div>');
+    colH.innerHTML='<div style="flex:1;min-width:0">Fach (LK=×2)</div><div style="width:44px;text-align:center">Q1</div><div style="width:44px;text-align:center">Q2</div><div style="width:44px;text-align:center">Q3</div><div style="width:44px;text-align:center">Q4</div><div style="width:38px;text-align:center">Ø</div><div style="width:28px"></div>';
+    d.appendChild(colH);
+    var lkStatus=getLkDoubledStatus();
+    S.calcSubjects.forEach(function(sub,si){
+      var status=lkStatus[sub.id];
+      var validGrades=sub.grades.filter(function(g){return g!==''&&!isNaN(+g);});
+      var avg=validGrades.length>0?(validGrades.reduce(function(s,v){return s+(+v);},0)/validGrades.length).toFixed(1):'–';
+      var avgCol=avg==='–'?'#94a3b8':(+avg>=10?'#16a34a':(+avg>=5?'#d97706':'#dc2626'));
+      var row=document.createElement('div');row.className='calc-subject-row';
+      // Name & LK toggle
+      var nameWrap=mk('<div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:3px"></div>');
+      var nameEl=mk('<div style="font-weight:600;font-size:12px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+sub.name+'</div>');
+      nameWrap.appendChild(nameEl);
+      var lkBtn=document.createElement('button');
+      lkBtn.className='lk-badge '+(sub.lk?'lk-on':'lk-off');
+      lkBtn.textContent=status==='doubled'?'LK ×2':status==='lk_only'?'LK ×1':'GK ×1';
+      lkBtn.onclick=(function(s){return function(){s.lk=!s.lk;render();};})(sub);
+      nameWrap.appendChild(lkBtn);row.appendChild(nameWrap);
+      // Grade inputs
+      for(var q=0;q<4;q++){
+        var inp=document.createElement('input');inp.type='number';inp.min='0';inp.max='15';inp.className='grade-inp';inp.value=sub.grades[q];inp.placeholder='–';
+        inp.oninput=(function(s2,qi){return function(e){s2.grades[qi]=e.target.value;};})(sub,q);
+        row.appendChild(inp);
+      }
+      // Average
+      row.appendChild(mk('<div style="width:38px;text-align:center;font-weight:800;font-size:13px;color:'+avgCol+'">'+avg+'</div>'));
+      // Delete
+      var del=document.createElement('button');del.className='btn-sm btn-red-sm';del.textContent='✕';del.style.width='26px';del.style.padding='4px';
+      del.onclick=(function(idx){return function(){S.calcSubjects.splice(idx,1);render();};})(si);
+      row.appendChild(del);d.appendChild(row);
+    });
+
+    // Add subject button
+    var addRow=mk('<div style="display:flex;gap:8px;margin-top:8px;margin-bottom:16px"></div>');
+    var subjectNames=['Mathematik','Deutsch','Englisch','Physik','Chemie','Biologie','Geschichte','Geographie','Sozialwissenschaften','Informatik','Französisch','Spanisch','Latein','Kunst','Musik','Ethik/Religion','Sport','Erdkunde','Wirtschaft','Politik'];
+    var selEl=document.createElement('select');selEl.className='wide-inp';selEl.style.cssText='flex:1;padding:8px 10px;border:1.5px solid #e2e8f0;border-radius:10px;font-size:13px;outline:none;background:'+(S.dark?'#0f172a':'#fff');
+    var defOpt=document.createElement('option');defOpt.value='';defOpt.textContent='+ Fach wählen...';selEl.appendChild(defOpt);
+    subjectNames.forEach(function(sn){var opt=document.createElement('option');opt.value=sn;opt.textContent=sn;selEl.appendChild(opt);});
+    addRow.appendChild(selEl);
+    var addBtn=document.createElement('button');addBtn.className='btn-blue';addBtn.style.cssText='padding:8px 14px;border-radius:10px;font-size:13px;font-weight:700';addBtn.textContent='Hinzufügen';
+    addBtn.onclick=function(){
+      var n=selEl.value;if(!n)return;
+      var sub=SUBJECTS.find(function(s){return s.name===n;});
+      var icon=sub?sub.icon:'📚';
+      S.calcSubjects.push({id:S.calcNextId++,name:n,icon:icon,lk:false,grades:['','','','']});
+      render();
+    };
+    addRow.appendChild(addBtn);d.appendChild(addRow);
+
+    // Bayern Seminare
+    if(isBayern()){
+      var semToggle=mk('<div class="calc-subject-row" style="cursor:pointer;margin-bottom:8px"></div>');
+      var semCb=document.createElement('input');semCb.type='checkbox';semCb.checked=S.calcSeminarEnabled;semCb.style.cssText='width:16px;height:16px;cursor:pointer;accent-color:#1d4ed8';
+      semCb.onchange=function(){S.calcSeminarEnabled=semCb.checked;render();};
+      semToggle.appendChild(semCb);semToggle.appendChild(mk('<div style="font-weight:700;font-size:13px;margin-left:8px">🎓 Bayern: Seminare einschließen</div>'));
+      d.appendChild(semToggle);
+      if(S.calcSeminarEnabled){
+        ['W-Seminar','P-Seminar (Seminararbeit)'].forEach(function(semName,si){
+          var sem=S.calcSeminar[si];
+          var semScore=calcSeminarScore(sem);
+          var semCard=mk('<div class="calc-subject-row" style="flex-direction:column;align-items:stretch;gap:10px;margin-bottom:8px"></div>');
+          semCard.appendChild(mk('<div style="font-weight:700;font-size:13px">'+semName+(semScore!==null?' → <span style="color:#1d4ed8">'+semScore+'/30 Punkte</span>':'')+'</div>'));
+          var semGrid=mk('<div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:6px"></div>');
+          ['Mitarbeit Q1','Mitarbeit Q2','Schriftlich (×3)','Präsentation (×1)'].forEach(function(label,fi){
+            var fw=mk('<div style="display:flex;flex-direction:column;gap:3px"></div>');
+            fw.appendChild(mk('<div style="font-size:10px;color:#94a3b8">'+label+'</div>'));
+            var inp=document.createElement('input');inp.type='number';inp.min='0';inp.max='15';inp.className='grade-inp';inp.style.width='100%';
+            var key=['ma1','ma2','schriftl','praes'][fi];
+            inp.value=sem[key];inp.placeholder='–';
+            inp.oninput=(function(s,k){return function(e){s[k]=e.target.value;};})(sem,key);
+            fw.appendChild(inp);semGrid.appendChild(fw);
+          });
+          semCard.appendChild(semGrid);
+          if(semScore!==null)semCard.appendChild(mk('<div style="font-size:11px;color:#64748b">Formel: (Schriftlich×3 + Präs.×1) ÷ 2 = '+semScore+' von max. 30 Punkten</div>'));
+          d.appendChild(semCard);
+        });
+      }
+    }
+
+    // Summary
+    d.appendChild(mk('<div style="background:'+(S.dark?'#1e293b':'#f1f5f9')+';border-radius:12px;padding:14px;font-size:13px"><div style="font-weight:700;margin-bottom:8px">📐 Block I Berechnung</div><div style="color:#64748b;line-height:1.8">• 2 Leistungskurse werden mit Faktor <b>×2</b> gewichtet<br>• Restliche Kurse: Faktor <b>×1</b><br>• Formel: (Σ gewichtete Noten) ÷ (Σ Gewichte) × 40<br>• Maximum: <b>600 Punkte</b> | Minimum zum Bestehen: <b>200 Punkte</b>'+(isBayern()?'<br>• Bayern-Seminar: max. 30 Pkt./Seminar (Formel: (S×3+P×1)÷2)':'')+'</div></div>'));
+  } else {
+    // BLOCK II
+    d.appendChild(mk('<div style="background:'+(S.dark?'#1e293b':'#fff')+';border:1.5px solid '+(S.dark?'#334155':'#e2e8f0')+';border-radius:12px;padding:12px 14px;margin-bottom:12px;font-size:12px;color:#64748b">📋 <b>Block II: Abiturprüfungen</b><br>4 Prüfungsfächer → jede Note × <b>5</b> (max 75/Fach = 300 ges.)<br>5 Prüfungsfächer → jede Note × <b>4</b> (max 60/Fach = 300 ges.)</div>'));
+    var filledExams=S.calcExams.filter(function(e){return e.grade!==''&&!isNaN(+e.grade);});
+    var factor=filledExams.length>=5?4:5;
+    var b2h=mk('<div style="display:flex;gap:4px;padding:0 4px;margin-bottom:6px;font-size:10px;font-weight:700;color:#94a3b8"><div style="flex:1">PRÜFUNGSFACH</div><div style="width:60px;text-align:center">Note (0–15)</div><div style="width:60px;text-align:center">Punkte (×'+factor+')</div></div>');
+    d.appendChild(b2h);
+    S.calcExams.forEach(function(exam,ei){
+      var weighted=exam.grade!==''&&!isNaN(+exam.grade)?Math.min(15,Math.max(0,+exam.grade))*factor:'–';
+      var wCol=weighted==='–'?'#94a3b8':(+weighted>=40?'#16a34a':(+weighted>=20?'#d97706':'#dc2626'));
+      var row=mk('<div class="calc-subject-row" style="margin-bottom:8px"></div>');
+      var nameInp=document.createElement('input');nameInp.type='text';nameInp.placeholder='Prüfungsfach '+(ei+1);nameInp.value=exam.name;nameInp.style.cssText='flex:1;border:none;background:transparent;font-size:13px;font-weight:600;outline:none;color:'+(S.dark?'#f1f5f9':'#0f172a');
+      nameInp.oninput=(function(e2){return function(ev){e2.name=ev.target.value;};})(exam);
+      row.appendChild(nameInp);
+      var gradeInp=document.createElement('input');gradeInp.type='number';gradeInp.min='0';gradeInp.max='15';gradeInp.className='grade-inp';gradeInp.style.width='60px';gradeInp.value=exam.grade;gradeInp.placeholder='–';
+      gradeInp.oninput=(function(e2){return function(ev){e2.grade=ev.target.value;};})(exam);
+      row.appendChild(gradeInp);
+      row.appendChild(mk('<div style="width:60px;text-align:center;font-weight:800;font-size:13px;color:'+wCol+'">'+weighted+'</div>'));
+      var del=document.createElement('button');del.className='btn-sm btn-red-sm';del.textContent='✕';del.style.width='26px';del.style.padding='4px';
+      del.onclick=(function(idx){return function(){if(S.calcExams.length>1)S.calcExams.splice(idx,1);render();};})(ei);
+      row.appendChild(del);d.appendChild(row);
+    });
+    if(S.calcExams.length<5){var addE=document.createElement('button');addE.className='btn-gray';addE.style.cssText='width:100%;margin-top:4px;font-size:13px;padding:10px';addE.textContent='+ 5. Prüfungsfach hinzufügen (optional)';addE.onclick=function(){S.calcExams.push({id:S.calcNextId++,name:'Prüfung 5',grade:''});render();};d.appendChild(addE);}
+    var b2Total=calcBlockII();
+    d.appendChild(mk('<div style="background:'+(S.dark?'#1e293b':'#f1f5f9')+';border-radius:12px;padding:14px;margin-top:8px;font-size:13px"><b>Block II Summe: '+b2Total+'/300 Punkte</b> '+(b2Total>=100?'✅ (≥100 Pkt., bestanden)':'⚠️ (min. 100 Pkt. nötig)')+'</div>'));
+  }
+  return d;
+}
+
+// ==================== SUBJECTS ====================
+function buildSubs(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+
+  // Lesson view
+  if(S.currentTopic){
+    var lt=S.currentTopic;var lesson=LESSONS[lt.key];
+    var bk=document.createElement('button');bk.style.cssText='background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;color:#1d4ed8;margin-bottom:14px;padding:0';bk.textContent='← Zurück zum Fach';bk.onclick=function(){S.currentTopic=null;render();};d.appendChild(bk);
+    if(lesson){
+      d.appendChild(mk('<h2 style="font-weight:800;font-size:18px;margin-bottom:6px">'+lesson.title+'</h2>'));
+      d.appendChild(mk('<p style="font-size:14px;line-height:1.7;color:'+(S.dark?'#e2e8f0':'#374151')+';margin-bottom:16px">'+lesson.intro+'</p>'));
+      if(lesson.rules&&lesson.rules.length){
+        var sec=mk('<div class="lesson-section"></div>');sec.appendChild(mk('<h4>📐 Wichtige Regeln & Formeln</h4>'));
+        var tbl=mk('<table class="formula-table"></table>');tbl.innerHTML='<thead><tr><th>Regel/Name</th><th>Formel</th><th>Beispiel</th></tr></thead>';
+        var tb2=document.createElement('tbody');
+        lesson.rules.forEach(function(row){var tr=document.createElement('tr');row.forEach(function(cell){var td=document.createElement('td');td.textContent=cell;tr.appendChild(td);});tb2.appendChild(tr);});
+        tbl.appendChild(tb2);sec.appendChild(tbl);d.appendChild(sec);
+      }
+      if(lesson.example){
+        var exSec=mk('<div class="lesson-section"></div>');exSec.appendChild(mk('<h4>✏️ Beispielaufgabe</h4>'));
+        exSec.appendChild(mk('<div style="font-weight:600;font-size:13px;margin-bottom:8px">Aufgabe:</div><p style="font-size:13px;line-height:1.6;color:'+(S.dark?'#e2e8f0':'#374151')+'">'+lesson.example.problem+'</p>'));
+        var solBox=mk('<div class="example-box"></div>');solBox.innerHTML='<div style="font-weight:700;font-size:12px;color:#16a34a;margin-bottom:6px">✅ Lösung:</div><div style="font-size:13px;white-space:pre-wrap;line-height:1.6">'+lesson.example.solution+'</div>';
+        exSec.appendChild(solBox);
+        exSec.appendChild(mk('<div style="font-size:12px;color:#64748b;margin-top:6px;font-style:italic">'+lesson.example.explanation+'</div>'));
+        d.appendChild(exSec);
+      }
+      if(lesson.tip){var tipSec=mk('<div class="lesson-section"></div>');tipSec.appendChild(mk('<h4>💡 Abitur-Tipp</h4>'));tipSec.appendChild(mk('<div class="tip-box" style="font-size:13px;line-height:1.6">'+lesson.tip+'</div>'));d.appendChild(tipSec);}
+      var quizBtn=document.createElement('button');quizBtn.className='btn-blue';quizBtn.style.cssText='width:100%;margin-top:8px';quizBtn.textContent='✏️ Aufgaben zu diesem Thema üben';quizBtn.onclick=function(){S.qSubFilter=lt.subId;setTab('quiz');};d.appendChild(quizBtn);
+    } else {
+      d.appendChild(mk('<div style="padding:20px;text-align:center"><div style="font-size:40px;margin-bottom:12px">📚</div><div style="font-weight:700;font-size:16px;margin-bottom:6px">'+lt.title+'</div><div style="color:#64748b;font-size:14px;margin-bottom:16px">Dieses Thema wird demnächst mit vollständigen Inhalten gefüllt. Frage deinen KI-Tutor!</div></div>'));
+      var aiBtn=document.createElement('button');aiBtn.className='btn-blue';aiBtn.style.cssText='width:100%';aiBtn.textContent='🤖 KI-Tutor zu diesem Thema fragen';aiBtn.onclick=function(){S.aiMsgs=[{role:'ai',text:'Ich erkläre dir gerne "'+lt.title+'"! Stelle deine Frage oder ich gebe dir eine Übersicht der wichtigsten Konzepte.'}];setTab('ai');};d.appendChild(aiBtn);
+    }
+    return d;
+  }
+
+  // Subject detail view
+  if(S.subj){
+    var sub=S.subj;
+    var bkS=document.createElement('button');bkS.style.cssText='background:none;border:none;cursor:pointer;font-size:14px;font-weight:700;color:#1d4ed8;margin-bottom:14px;padding:0';bkS.textContent='← Alle Fächer';bkS.onclick=function(){S.subj=null;render();};d.appendChild(bkS);
+    var hd=mk('<div style="border-radius:14px;padding:18px;margin-bottom:16px;border-left:4px solid '+sub.col+';background:'+sub.col+'12"></div>');
+    hd.innerHTML='<div style="font-size:36px;margin-bottom:6px">'+sub.icon+'</div><div style="font-weight:800;font-size:19px;margin-bottom:4px">'+sub.name+'</div><div style="font-size:12px;color:#64748b">'+sub.topics.length+' Themen · Klicke auf ein Thema zum Lernen</div>';
+    d.appendChild(hd);
+    sub.topics.forEach(function(topic,i){
+      var hasLesson=!!LESSONS[sub.id+'_'+topic.id.split('_').pop()]||!!LESSONS[sub.id+'_'+topic.id];
+      var c=document.createElement('div');c.className='card';c.style.cssText='padding:14px 16px;margin-bottom:10px;cursor:pointer;display:flex;align-items:center;gap:12px';
+      var icon2=mk('<div style="width:36px;height:36px;border-radius:10px;background:'+sub.col+'18;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:18px">'+sub.icon+'</div>');
+      var info=mk('<div style="flex:1"><div style="font-weight:600;font-size:14px">'+topic.title+'</div><div style="font-size:11px;color:#94a3b8;margin-top:2px">'+(hasLesson?'✅ Vollständige Lerneinheit verfügbar':'📝 Themenübersicht')+'</div></div>');
+      c.appendChild(icon2);c.appendChild(info);
+      c.appendChild(mk('<div style="font-size:18px;color:#94a3b8">›</div>'));
+      c.onclick=function(){
+        var key=sub.id+'_'+topic.id;
+        S.currentTopic={key:key,title:topic.title,subId:sub.id};render();
+      };
+      d.appendChild(c);
+    });
+    var startQuiz=document.createElement('button');startQuiz.className='btn-blue';startQuiz.style.cssText='width:100%;margin-top:4px';startQuiz.textContent='✏️ Aufgaben für '+sub.name+' starten';startQuiz.onclick=function(){S.qSubFilter=sub.id;setTab('quiz');};d.appendChild(startQuiz);
+    return d;
+  }
+
+  // Subject search
+  var sw=mk('<div style="position:relative;margin-bottom:16px"></div>');
+  sw.appendChild(mk('<span style="position:absolute;left:12px;top:50%;transform:translateY(-50%);font-size:16px;pointer-events:none">🔍</span>'));
+  var sinp=document.createElement('input');sinp.type='text';sinp.placeholder='Fach suchen...';sinp.value=S.search;sinp.className='wide-inp';sinp.style.paddingLeft='38px';sinp.oninput=function(e){S.search=e.target.value;render();};
+  sw.appendChild(sinp);d.appendChild(sw);
+  var filtered=SUBJECTS.filter(function(s){return !S.search||s.name.toLowerCase().indexOf(S.search.toLowerCase())>=0;});
+  d.appendChild(mk('<div style="font-size:11px;font-weight:700;color:#94a3b8;margin-bottom:10px">'+filtered.length+' FÄCHER VERFÜGBAR</div>'));
+  var grid=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px"></div>');
+  var pvals=[62,47,80,72,35,58,44,25,66,38,20,18,30,42,55];
+  filtered.forEach(function(sub,i){
+    var lk=S.ob.lk.indexOf(sub.id)>=0;var p=pvals[SUBJECTS.indexOf(sub)]||40;
+    var c=document.createElement('div');c.className='card';c.style.cssText='padding:16px;cursor:pointer;transition:all .2s';
+    c.innerHTML='<div style="font-size:30px;margin-bottom:6px">'+sub.icon+'</div><div style="font-weight:700;font-size:13px;margin-bottom:2px">'+sub.name+'</div><div style="font-size:11px;color:#94a3b8;margin-bottom:8px">'+sub.topics.length+' Themen</div>'+(lk?'<span class="badge b-blue">LK</span>':'')+' <div class="pbar" style="margin-top:8px"><div class="pfill" style="width:'+p+'%;background:'+sub.col+'"></div></div>';
+    c.onclick=(function(s){return function(){S.subj=s;render();};})(sub);grid.appendChild(c);
+  });
+  d.appendChild(grid);return d;
+}
+
+// ==================== QUIZ ====================
+function buildQuiz(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  // Subject filter
+  var sfRow=mk('<div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:10px;padding-bottom:2px" class="no-scroll"></div>');
+  [{id:'all',label:'Alle',col:'#1d4ed8'},{id:'math',label:'📐 Mathe',col:'#1d4ed8'},{id:'his',label:'🏛️ Geschichte',col:'#92400e'},{id:'bio',label:'🧬 Biologie',col:'#16a34a'},{id:'phy',label:'⚛️ Physik',col:'#059669'},{id:'de',label:'📖 Deutsch',col:'#7c3aed'}].forEach(function(sf){
+    var active=S.qSubFilter===sf.id;var b=document.createElement('button');
+    b.style.cssText='padding:6px 14px;border-radius:100px;border:none;font-size:12px;font-weight:700;cursor:pointer;white-space:nowrap;background:'+(active?sf.col:'#f1f5f9')+';color:'+(active?'#fff':'#64748b');
+    b.textContent=sf.label;b.onclick=function(){S.qSubFilter=sf.id;S.qIdx=0;S.qAnswered=false;S.qSelected=-1;render();};sfRow.appendChild(b);
+  });
+  d.appendChild(sfRow);
+  // AFB filter
+  var afbRow=mk('<div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:14px" class="no-scroll"></div>');
+  [{id:'all',label:'Alle'},{id:'1',label:'AFB I'},{id:'2',label:'AFB II'},{id:'3',label:'AFB III'}].forEach(function(af){
+    var active=S.qAfbFilter===af.id;var b=document.createElement('button');
+    var cls=af.id==='all'?'b-gray':(af.id==='1'?'afb-1':(af.id==='2'?'afb-2':'afb-3'));
+    b.style.cssText='padding:5px 12px;border-radius:100px;border:none;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap;'+(active?'background:#1d4ed8;color:#fff':'background:#f1f5f9;color:#64748b');
+    b.textContent=af.label;b.onclick=function(){S.qAfbFilter=af.id;S.qIdx=0;S.qAnswered=false;S.qSelected=-1;render();};afbRow.appendChild(b);
+  });
+  d.appendChild(afbRow);
+
+  var filtered=ALL_QUIZ.filter(function(q){
+    var subOk=S.qSubFilter==='all'||q.sub===S.qSubFilter;
+    var afbOk=S.qAfbFilter==='all'||String(q.afb)===S.qAfbFilter;
+    return subOk&&afbOk;
+  });
+  if(!filtered.length){d.appendChild(mk('<div style="text-align:center;padding:40px;color:#94a3b8">Keine Aufgaben für diese Auswahl</div>'));return d;}
+  var qi=S.qIdx%filtered.length;var q=filtered[qi];
+  var hrow=mk('<div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"></div>');
+  hrow.appendChild(mk('<span style="font-size:13px;font-weight:700;color:#64748b">Frage '+(qi+1)+'/'+filtered.length+'</span>'));
+  hrow.appendChild(mk('<span class="badge '+(q.afb===1?'afb-1':q.afb===2?'afb-2':'afb-3')+'">AFB '+(q.afb==='1'||q.afb===1?'I':q.afb===2?'II':'III')+'</span>'));
+  d.appendChild(hrow);
+  d.appendChild(mk('<div class="pbar" style="margin-bottom:14px"><div class="pfill" style="width:'+Math.round(qi/filtered.length*100)+'%"></div></div>'));
+  var qCard=document.createElement('div');qCard.className='card';qCard.style.cssText='padding:20px;margin-bottom:16px';
+  var subName={'math':'Mathematik','his':'Geschichte','bio':'Biologie','phy':'Physik','de':'Deutsch','geo':'Geographie','pol':'Politik'}[q.sub]||q.sub;
+  qCard.innerHTML='<div style="display:flex;gap:6px;margin-bottom:10px"><span class="badge b-gray">'+subName+'</span><span class="badge '+(q.afb===1?'afb-1':q.afb===2?'afb-2':'afb-3')+'">AFB '+(q.afb===1?'I':q.afb===2?'II':'III')+'</span></div><p style="font-weight:700;font-size:15px;line-height:1.55;margin:0">'+q.q+'</p>';
+  d.appendChild(qCard);
+  q.opts.forEach(function(opt,i){
+    var answered=S.qAnswered;var sel=S.qSelected===i;var correct=i===q.ans;
+    var bg,border,color;
+    if(answered){if(correct){bg='#dcfce7';border='#16a34a';color='#15803d';}else if(sel){bg='#fee2e2';border='#dc2626';color='#dc2626';}else{bg=S.dark?'#1e293b':'#f8fafc';border=S.dark?'#334155':'#e2e8f0';color=S.dark?'#e2e8f0':'#374151';}}
+    else{bg=S.dark?'#1e293b':'#f8fafc';border=S.dark?'#334155':'#e2e8f0';color=S.dark?'#e2e8f0':'#374151';}
+    var btn=document.createElement('button');btn.style.cssText='width:100%;padding:12px 14px;border-radius:12px;border:2px solid '+border+';background:'+bg+';color:'+color+';font-size:13px;font-weight:600;text-align:left;cursor:pointer;margin-bottom:8px;display:flex;align-items:center;gap:10px;transition:all .2s';
+    btn.innerHTML='<span style="width:24px;height:24px;border-radius:50%;background:'+border+'22;display:inline-flex;align-items:center;justify-content:center;font-size:11px;font-weight:800;flex-shrink:0">'+String.fromCharCode(65+i)+'</span><span>'+opt+'</span>';
+    btn.onclick=(function(idx){return function(){if(!S.qAnswered){S.qAnswered=true;S.qSelected=idx;if(idx===q.ans){S.qScore+=15;S.xp+=15;}render();};};})(i);
+    d.appendChild(btn);
+  });
+  if(S.qAnswered){
+    var ok=S.qSelected===q.ans;var fb=mk('<div style="background:'+(ok?'#dcfce7':'#fee2e2')+';border-radius:12px;padding:14px 16px;margin-bottom:12px"></div>');
+    fb.innerHTML='<div style="font-weight:700;font-size:14px;margin-bottom:4px">'+(ok?'✅ Richtig! +15 XP':'❌ Leider falsch')+'</div><div style="font-size:13px;color:#374151;line-height:1.6">'+q.ex+'</div>';
+    d.appendChild(fb);var nb=document.createElement('button');nb.className='btn-blue';nb.style.cssText='width:100%';nb.textContent='Nächste Frage →';nb.onclick=function(){S.qIdx++;S.qAnswered=false;S.qSelected=-1;render();};d.appendChild(nb);
+  }
+  return d;
+}
+
+// ==================== FLASHCARDS ====================
+function buildCards(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var fc=FLASHCARDS[S.fcIdx%FLASHCARDS.length];
+  var sr=mk('<div style="display:flex;gap:8px;margin-bottom:16px"></div>');
+  [[String(S.fcIdx%FLASHCARDS.length+1)+'/'+FLASHCARDS.length,'Karten','🔁'],['8','Heute gelernt','✅'],['4','Fällig','⏰']].forEach(function(x){var c=mk('<div class="card" style="flex:1;padding:10px;text-align:center"></div>');c.innerHTML='<div style="font-size:18px">'+x[2]+'</div><div style="font-weight:800;font-size:13px;margin-top:2px">'+x[0]+'</div><div style="font-size:10px;color:#94a3b8">'+x[1]+'</div>';sr.appendChild(c);});
+  d.appendChild(sr);
+  var cardH=200;var outer=document.createElement('div');outer.className='flip-container';outer.style.cssText='height:'+cardH+'px;cursor:pointer;margin-bottom:16px;position:relative';outer.title='Tippen zum Umdrehen';
+  var inner=document.createElement('div');inner.className='flipper'+(S.fcFlipped?' flipped':'');inner.style.cssText='width:100%;height:'+cardH+'px';
+  var front=document.createElement('div');front.className='flip-front card';front.style.cssText='height:'+cardH+'px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center';
+  front.innerHTML='<div style="font-size:11px;font-weight:700;color:#94a3b8;text-transform:uppercase;margin-bottom:10px">Frage</div><div style="font-size:14px;font-weight:600;line-height:1.55">'+fc.f+'</div><div style="font-size:11px;color:#94a3b8;margin-top:12px">👆 Tippen zum Umdrehen</div>';
+  var back=document.createElement('div');back.className='flip-back card';back.style.cssText='height:'+cardH+'px;padding:20px;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;background:linear-gradient(135deg,#eff6ff,#dbeafe)';
+  back.innerHTML='<div style="font-size:11px;font-weight:700;color:#1d4ed8;text-transform:uppercase;margin-bottom:10px">Antwort</div><div style="font-size:12px;font-weight:500;line-height:1.7;white-space:pre-wrap;text-align:left">'+fc.b+'</div>';
+  inner.appendChild(front);inner.appendChild(back);outer.appendChild(inner);outer.onclick=function(){S.fcFlipped=!S.fcFlipped;render();};d.appendChild(outer);
+  if(S.fcFlipped){
+    var btns=mk('<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin-bottom:16px"></div>');
+    [['❌','Nochmal','#fee2e2','#dc2626'],['😐','Fast','#fef3c7','#d97706'],['✅','Gewusst','#dcfce7','#16a34a']].forEach(function(x){var b=document.createElement('button');b.style.cssText='padding:12px 8px;border-radius:12px;border:none;background:'+x[2]+';color:'+x[3]+';font-weight:700;font-size:13px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:4px';b.innerHTML='<span style="font-size:20px">'+x[0]+'</span><span>'+x[1]+'</span>';b.onclick=function(){S.fcIdx++;S.fcFlipped=false;render();};btns.appendChild(b);});d.appendChild(btns);
+  } else {var nb=mk('<div style="display:flex;gap:10px;margin-bottom:16px"></div>');var pv=document.createElement('button');pv.className='btn-gray';pv.style.flex='1';pv.textContent='← Zurück';pv.onclick=function(){if(S.fcIdx>0)S.fcIdx--;S.fcFlipped=false;render();};var nx=document.createElement('button');nx.className='btn-blue';nx.style.flex='1';nx.textContent='Weiter →';nx.onclick=function(){S.fcIdx++;S.fcFlipped=false;render();};nb.appendChild(pv);nb.appendChild(nx);d.appendChild(nb);}
+  var aiC=mk('<div style="background:linear-gradient(135deg,#f5f3ff,#ede9fe);border-radius:14px;padding:16px;border:2px solid #c4b5fd"></div>');
+  aiC.innerHTML='<div style="font-weight:700;font-size:14px;margin-bottom:4px">🤖 Weitere Karten generieren</div><div style="font-size:13px;color:#64748b;margin-bottom:10px">KI erstellt personalisierte Karten für jedes Thema</div>';
+  var ab=document.createElement('button');ab.style.cssText='background:#7c3aed;color:#fff;border:none;border-radius:10px;padding:9px 20px;font-weight:700;font-size:13px;cursor:pointer';ab.textContent='🪄 Karten erstellen';ab.onclick=function(){if(!(S.user&&S.user.premium)){S.premModal=true;render();}else setTab('ai');};aiC.appendChild(ab);d.appendChild(aiC);
+  return d;
+}
+
+// ==================== AI ====================
+function buildAI(){
+  var wrap=document.createElement('div');wrap.style.cssText='display:flex;flex-direction:column;height:calc(100vh - 165px)';
+  var mbar=mk('<div style="padding:8px 14px;border-bottom:1px solid '+(S.dark?'#1e293b':'#e2e8f0')+';display:flex;gap:6px;overflow-x:auto" class="no-scroll"></div>');
+  ['🌱 Anfänger','📚 Standard','🎯 Abi-Intensiv'].forEach(function(m,i){var b=document.createElement('button');b.style.cssText='padding:6px 14px;border-radius:100px;border:none;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;background:'+(i===1?'#1d4ed8':(S.dark?'#1e293b':'#f1f5f9'))+';color:'+(i===1?'#fff':'#64748b');b.textContent=m;mbar.appendChild(b);});
+  wrap.appendChild(mbar);
+  var msgs=document.createElement('div');msgs.className='no-scroll';msgs.id='ai-msgs';msgs.style.cssText='flex:1;overflow-y:auto;padding:14px;display:flex;flex-direction:column;gap:10px';
+  if(!S.aiMsgs.length){
+    var welcome=mk('<div style="text-align:center;padding:24px 12px"></div>');
+    welcome.innerHTML='<div style="font-size:40px;margin-bottom:10px">🤖</div><div style="font-weight:700;font-size:17px;margin-bottom:6px">Dein KI-Tutor</div><div style="font-size:13px;color:#64748b;line-height:1.6">Frage zu Analysis, Genetik, Geschichte – ich erkläre es strukturiert und Bundesland-spezifisch!</div>';
+    msgs.appendChild(welcome);
+    var sugg=mk('<div style="display:flex;flex-direction:column;gap:8px;margin-top:8px"></div>');
+    ['📐 Erkläre Ableitungsregeln mit Beispiel','🧬 Was ist Meiose vs. Mitose?','🏛️ Weimarer Republik – Warum scheiterte sie?','⚛️ Photoeffekt einfach erklärt','🎓 Wie bewerbe ich mich für Medizin?'].forEach(function(s){var b=document.createElement('button');b.style.cssText='padding:10px 14px;border-radius:12px;border:1.5px solid '+(S.dark?'#334155':'#e2e8f0')+';background:'+(S.dark?'#1e293b':'#fff')+';font-size:13px;font-weight:500;text-align:left;cursor:pointer;color:'+(S.dark?'#e2e8f0':'#374151');b.textContent=s;b.onclick=function(){sendAI(s);};sugg.appendChild(b);});
+    msgs.appendChild(sugg);
+  } else {
+    S.aiMsgs.forEach(function(m){var row=mk('<div style="display:flex;flex-direction:column;align-items:'+(m.role==='user'?'flex-end':'flex-start')+'"></div>');if(m.role==='ai')row.appendChild(mk('<div style="font-size:10px;color:#94a3b8;margin-bottom:3px;padding-left:4px">🤖 KI-Tutor</div>'));var b=document.createElement('div');b.className=m.role==='user'?'bubble-user':'bubble-ai';b.textContent=m.text;row.appendChild(b);msgs.appendChild(row);});
+    setTimeout(function(){msgs.scrollTop=99999;},50);
+  }
+  wrap.appendChild(msgs);
+  var inpRow=document.createElement('div');inpRow.style.cssText='padding:10px 14px;border-top:1px solid '+(S.dark?'#1e293b':'#e2e8f0')+';display:flex;gap:10px;background:'+(S.dark?'#0f172a':'#f8fafc');
+  var inp=document.createElement('input');inp.type='text';inp.placeholder='Stelle eine Frage...';inp.value=S.aiInput;inp.style.cssText='flex:1;padding:10px 14px;border:1.5px solid '+(S.dark?'#334155':'#e2e8f0')+';border-radius:12px;font-size:14px;outline:none;background:'+(S.dark?'#1e293b':'#fff')+';color:'+(S.dark?'#f1f5f9':'#0f172a');
+  inp.oninput=function(e){S.aiInput=e.target.value;};inp.onkeydown=function(e){if(e.key==='Enter')sendAI(S.aiInput);};
+  inpRow.appendChild(inp);
+  var sendB=document.createElement('button');sendB.style.cssText='background:#1d4ed8;color:#fff;border:none;border-radius:12px;width:42px;height:42px;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0';sendB.textContent='➤';sendB.onclick=function(){sendAI(S.aiInput);};
+  inpRow.appendChild(sendB);wrap.appendChild(inpRow);return wrap;
+}
+
+function sendAI(text){
+  if(!text||!text.trim())return;
+  S.aiMsgs.push({role:'user',text:text.trim()});S.aiInput='';render();
+  setTimeout(function(){
+    var t=text.toLowerCase();var reply;
+    if(t.indexOf('ableit')>=0||t.indexOf('analysis')>=0||t.indexOf('integral')>=0||t.indexOf('mathe')>=0||t.indexOf('stochastik')>=0||t.indexOf('vektor')>=0) reply=AI_REPLIES.math;
+    else if(t.indexOf('weimar')>=0||t.indexOf('geschichte')>=0||t.indexOf('kalter krieg')>=0||t.indexOf('ns-')>=0||t.indexOf('nationalsozialist')>=0) reply=AI_REPLIES.his;
+    else if(t.indexOf('meiose')>=0||t.indexOf('bio')>=0||t.indexOf('genetik')>=0||t.indexOf('dna')>=0||t.indexOf('evolution')>=0) reply=AI_REPLIES.bio;
+    else if(t.indexOf('photo')>=0||t.indexOf('physik')>=0||t.indexOf('newton')>=0||t.indexOf('quanten')>=0) reply=AI_REPLIES.phy;
+    else reply=AI_REPLIES.default;
+    S.aiMsgs.push({role:'ai',text:reply});S.xp+=5;render();
+    setTimeout(function(){var el=document.getElementById('ai-msgs');if(el)el.scrollTop=99999;},60);
+  },800);
+}
+
+// ==================== PLANNER ====================
+function buildPlan(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var abiY=parseInt(S.ob.year||'2025');var today=new Date();var abiDate=new Date(abiY,4,1);
+  var daysLeft=Math.max(0,Math.ceil((abiDate-today)/86400000));
+  var cd=document.createElement('div');cd.style.cssText='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:18px;padding:20px;margin-bottom:16px;text-align:center';
+  cd.innerHTML='<div style="font-size:11px;opacity:.75;margin-bottom:4px">⏰ Countdown bis Abitur '+abiY+'</div><div style="font-size:54px;font-weight:900;line-height:1">'+daysLeft+'</div><div style="font-size:13px;opacity:.8;margin-top:4px">Tage · '+Math.floor(daysLeft/7)+' Wochen</div>';
+  d.appendChild(cd);
+  var wh=document.createElement('h3');wh.style.cssText='font-weight:700;font-size:15px;margin-bottom:10px';wh.textContent='📋 Wochenlernplan';d.appendChild(wh);
+  [{day:'Montag', plan:'Analysis: Ableitung & Extremwerte',dur:'45 Min',done:false,col:'#1d4ed8'},
+   {day:'Dienstag',plan:'Geschichte: Weimarer Republik AFB II',dur:'40 Min',done:false,col:'#92400e'},
+   {day:'Mittwoch',plan:'Biologie: Genetik Kreuzungsschema',dur:'35 Min',done:false,col:'#16a34a'},
+   {day:'Donnerstag',plan:'Physik: Quantenphysik Photoeffekt',dur:'45 Min',done:false,col:'#059669'},
+   {day:'Freitag',plan:'Mathe: Stochastik Binomialverteilung',dur:'50 Min',done:false,col:'#1d4ed8'},
+   {day:'Samstag',plan:'Karteikarten: Alle Fächer wiederholen',dur:'30 Min',done:false,col:'#7c3aed'},
+   {day:'Sonntag',plan:'Probeklausur: Analysisaufgaben',dur:'90 Min',done:false,col:'#d97706'},
+  ].forEach(function(p){
+    var c=mk('<div class="card" style="padding:12px 14px;margin-bottom:8px;display:flex;align-items:center;gap:12px;border-left:3px solid '+p.col+'"></div>');
+    c.innerHTML='<div style="min-width:70px;font-size:11px;font-weight:700;color:'+p.col+'">'+p.day+'</div><div style="flex:1"><div style="font-weight:600;font-size:13px">'+p.plan+'</div><div style="font-size:11px;color:#94a3b8">'+p.dur+'</div></div><div style="font-size:16px">○</div>';
+    d.appendChild(c);
+  });
+  var aib=document.createElement('button');aib.style.cssText='width:100%;padding:14px;border-radius:12px;border:2px dashed #c4b5fd;background:transparent;font-size:14px;font-weight:700;color:#7c3aed;cursor:pointer;margin-top:4px';aib.textContent='🤖 KI-Lernplan für mein Abi erstellen';aib.onclick=function(){if(!(S.user&&S.user.premium)){S.premModal=true;render();}else setTab('ai');};d.appendChild(aib);
+  return d;
+}
+
+// ==================== EXAMS ====================
+function buildExams(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var banner=mk('<div style="background:#fef3c7;border:1px solid #fbbf24;border-radius:12px;padding:12px 14px;margin-bottom:14px;display:flex;align-items:center;gap:10px"></div>');
+  banner.innerHTML='<span style="font-size:20px">💎</span><div style="flex:1"><div style="font-weight:700;font-size:12px;color:#92400e">Premium: Vollständiges Prüfungsarchiv</div><div style="font-size:11px;color:#a16207">Originalprüfungen aller Bundesländer mit Musterlösungen & AFB-Analyse</div></div>';
+  var upBtn=document.createElement('button');upBtn.style.cssText='background:#d97706;color:#fff;border:none;border-radius:8px;padding:6px 12px;font-size:11px;font-weight:700;cursor:pointer;white-space:nowrap';upBtn.textContent='Upgrade';upBtn.onclick=function(){S.premModal=true;render();};banner.appendChild(upBtn);d.appendChild(banner);
+  var fr=mk('<div style="display:flex;gap:6px;overflow-x:auto;margin-bottom:12px" class="no-scroll"></div>');
+  ['Alle','Bayern','NRW','BaWü','Hessen'].forEach(function(f,i){var b=document.createElement('button');b.style.cssText='padding:6px 14px;border-radius:100px;border:none;font-size:12px;font-weight:600;cursor:pointer;white-space:nowrap;background:'+(i===0?'#1d4ed8':'#f1f5f9')+';color:'+(i===0?'#fff':'#64748b');b.textContent=f;fr.appendChild(b);});d.appendChild(fr);
+  EXAMS.forEach(function(e,idx){
+    var locked=!(S.user&&S.user.premium)&&idx>1;
+    var c=mk('<div class="card" style="padding:14px;margin-bottom:10px'+(locked?';opacity:0.8':'')+'"></div>');
+    c.innerHTML='<div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:8px"><div><div style="font-weight:700;font-size:14px">'+e.sub+' · '+e.year+'</div><div style="font-size:12px;color:#64748b;margin-top:2px">'+e.state+'</div></div><span class="badge '+(e.diff==='Leicht'?'b-green':e.diff==='Schwer'?'b-red':'b-orange')+'">'+e.diff+'</span></div><div style="font-size:11px;color:#94a3b8;margin-bottom:10px">Themen: '+e.topics.join(' · ')+'</div>';
+    var br=mk('<div style="display:flex;gap:8px"></div>');
+    ['📄 Prüfung','✅ Lösung','📖 Erklärung'].forEach(function(label){var b=document.createElement('button');b.style.cssText='flex:1;padding:7px;border-radius:8px;border:none;background:'+(S.dark?'#0f172a':'#f1f5f9')+';font-size:11px;font-weight:600;cursor:pointer;color:'+(S.dark?'#e2e8f0':'#374151');b.textContent=(locked?'🔒 ':'')+label;if(locked)b.onclick=function(){S.premModal=true;render();};br.appendChild(b);});
+    c.appendChild(br);d.appendChild(c);
+  });
+  return d;
+}
+
+// ==================== PROGRESS ====================
+function buildProg(){
+  var d=document.createElement('div');d.style.cssText='padding:16px 18px';
+  var sg=mk('<div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:16px"></div>');
+  [['🔥','12 Tage','Streak'],['⭐','3.480','Gesamt-XP'],['📚','24','Themen gelernt'],['✏️',''+ALL_QUIZ.length+' verf.','Aufgaben'],['🃏',FLASHCARDS.length+' Karten','Bibliothek'],['⏱️','48h','Lernzeit']].forEach(function(x){var c=mk('<div class="card" style="padding:13px;display:flex;align-items:center;gap:10px"></div>');c.innerHTML='<div style="font-size:26px">'+x[0]+'</div><div><div style="font-weight:800;font-size:16px">'+x[1]+'</div><div style="font-size:11px;color:#94a3b8">'+x[2]+'</div></div>';sg.appendChild(c);});
+  d.appendChild(sg);
+  var hmh=document.createElement('h3');hmh.style.cssText='font-weight:700;font-size:15px;margin-bottom:10px';hmh.textContent='📅 Lernaktivität';d.appendChild(hmh);
+  var hm=mk('<div style="display:flex;flex-wrap:wrap;gap:4px;margin-bottom:18px"></div>');
+  var cols=['#e2e8f0','#bfdbfe','#93c5fd','#60a5fa','#1d4ed8'];
+  for(var i=0;i<35;i++){var v=Math.random();var ci=v>0.8?4:(v>0.6?3:(v>0.4?2:(v>0.2?1:0)));var col2=S.dark?(ci===0?'#1e293b':cols[ci]):cols[ci];var dot=document.createElement('div');dot.className='hm-dot';dot.style.background=col2;hm.appendChild(dot);}
+  d.appendChild(hm);
+  var sph=document.createElement('h3');sph.style.cssText='font-weight:700;font-size:15px;margin-bottom:10px';sph.textContent='Fortschritt nach Fach';d.appendChild(sph);
+  var pvs=[80,62,45,38,72,28,55,20];
+  SUBJECTS.slice(0,8).forEach(function(sub,i){var p=pvs[i]||30;var c=document.createElement('div');c.className='card';c.style.cssText='padding:12px 14px;margin-bottom:8px';c.innerHTML='<div style="display:flex;justify-content:space-between;margin-bottom:6px"><span style="font-weight:600;font-size:13px">'+sub.icon+' '+sub.name+'</span><span style="font-size:12px;font-weight:700;color:'+sub.col+'">'+p+'%</span></div><div class="pbar"><div class="pfill" style="width:'+p+'%;background:'+sub.col+'"></div></div>';d.appendChild(c);});
+  return d;
+}
+
+function buildProfileModal(){
+  var overlay=document.createElement('div');overlay.className='modal-bg';overlay.style.zIndex='200';
+  var box=document.createElement('div');box.className='modal-box';
+  var hdr=document.createElement('div');hdr.style.cssText='display:flex;align-items:center;gap:12px;margin-bottom:18px';
+  var av=document.createElement('div');av.style.cssText='width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#1d4ed8,#7c3aed);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:800;font-size:20px';av.textContent=(S.user&&S.user.name)?S.user.name.charAt(0):'U';
+  var hi=document.createElement('div');hi.style.flex='1';hi.innerHTML='<div style="font-weight:800;font-size:16px">'+(S.user?S.user.name:'Schüler')+'</div><div style="font-size:12px;color:#64748b">'+((S.user&&S.user.bundesland)||'NRW')+'</div>';
+  var cl=document.createElement('button');cl.style.cssText='background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8';cl.textContent='X';cl.onclick=function(){S.profileModal=false;render();};
+  hdr.appendChild(av);hdr.appendChild(hi);hdr.appendChild(cl);box.appendChild(hdr);
+
+  var tabs=document.createElement('div');tabs.style.cssText='display:flex;gap:6px;margin-bottom:18px';
+  [{id:'stats',label:'Stats'},{id:'settings',label:'Einstellungen'},{id:'uni',label:'Uni-Bewerbung'}].forEach(function(t){
+    var b=document.createElement('button');b.style.cssText='padding:7px 14px;border-radius:10px;border:none;font-size:13px;font-weight:600;cursor:pointer;background:'+(S.profileTab===t.id?'#1d4ed8':'#f1f5f9')+';color:'+(S.profileTab===t.id?'#fff':'#64748b');
+    b.textContent=t.label;b.onclick=function(){S.profileTab=t.id;render();};tabs.appendChild(b);
+  });
+  box.appendChild(tabs);
+
+  if(S.profileTab==='uni'){
+    var h4=document.createElement('h4');h4.style.cssText='font-weight:800;font-size:15px;margin-bottom:12px';h4.textContent='Uni-Bewerbungsguide';box.appendChild(h4);
+    UNI_SECTIONS.forEach(function(sec,i){
+      var card=document.createElement('div');card.style.cssText='margin-bottom:8px;border-radius:12px;border:1px solid #e2e8f0;overflow:hidden';
+      var hd2=document.createElement('div');hd2.style.cssText='padding:12px 14px;display:flex;align-items:center;gap:8px;cursor:pointer;background:#f8fafc';
+      hd2.innerHTML=sec.icon+' <b style="font-size:13px;flex:1">'+sec.title+'</b>';
+      var body=document.createElement('div');body.style.cssText='display:none;padding:14px;font-size:13px;line-height:1.75;white-space:pre-wrap;border-top:1px solid #e2e8f0';body.textContent=sec.content;
+      hd2.onclick=function(){body.style.display=body.style.display==='none'?'block':'none';};
+      card.appendChild(hd2);card.appendChild(body);box.appendChild(card);
+    });
+  } else if(S.profileTab==='settings'){
+    var lbl=document.createElement('label');lbl.style.cssText='font-size:13px;font-weight:600;display:block;margin-bottom:6px';lbl.textContent='Bundesland';box.appendChild(lbl);
+    var sel=document.createElement('select');sel.className='wide-inp';BL_NAMES.forEach(function(bl){var opt=document.createElement('option');opt.value=bl;opt.textContent=bl;if(S.user&&S.user.bundesland===bl)opt.selected=true;sel.appendChild(opt);});box.appendChild(sel);
+    var sv=document.createElement('button');sv.className='btn-blue';sv.style.cssText='width:100%;margin-top:12px';sv.textContent='Speichern';sv.onclick=function(){if(S.user)S.user.bundesland=sel.value;S.profileModal=false;render();};box.appendChild(sv);
+    var lo=document.createElement('button');lo.className='btn-gray';lo.style.cssText='width:100%;margin-top:8px';lo.textContent='🚪 Abmelden';lo.onclick=async function(){if(sb)await sb.auth.signOut();S.user=null;S.profileModal=false;go('landing');};box.appendChild(lo);
+  } else {
+    var sg=document.createElement('div');sg.style.cssText='display:grid;grid-template-columns:1fr 1fr;gap:10px';
+    [['Streak','12 Tage'],['XP','3.480'],['Themen','24'],['Karten',''+FLASHCARDS.length]].forEach(function(x){sg.innerHTML+='<div class="card" style="padding:13px;text-align:center"><div style="font-weight:800;font-size:18px">'+x[1]+'</div><div style="font-size:11px;color:#94a3b8">'+x[0]+'</div></div>';});
+    box.appendChild(sg);
+  }
+  overlay.appendChild(box);overlay.onclick=function(e){if(e.target===overlay){S.profileModal=false;render();}};return overlay;
+}
+
+function buildPremModal(){
+  var overlay=document.createElement('div');overlay.className='modal-bg';overlay.style.zIndex='200';
+  var box=document.createElement('div');box.className='modal-box';
+  box.innerHTML='<div style="text-align:center;margin-bottom:16px"><div style="font-size:44px">&#128142;</div><h2 style="font-weight:800;font-size:19px;margin:8px 0 4px">Jetzt Abitur! Premium</h2><p style="color:#64748b;font-size:13px">Schalte alle Features frei</p></div>';
+  ['Korrekter Abi-Rechner (alle 16 BL)','Vollstaendige Lerneinheiten','Unbegrenzte KI-Gespraeche','Pruefungsarchiv + Musterloesungen','KI-Lernplaene','Keine Werbung'].forEach(function(f){box.innerHTML+='<div style="display:flex;gap:10px;align-items:center;margin-bottom:8px"><span style="color:#16a34a;font-weight:800">v</span><span style="font-size:14px">'+f+'</span></div>';});
+  var b1=document.createElement('button');b1.className='btn-blue';b1.style.cssText='width:100%;margin-top:14px;margin-bottom:8px';b1.textContent='4,99 Euro/Monat starten';b1.onclick=function(){if(S.user)S.user.premium=true;S.premModal=false;render();};
+  var cl=document.createElement('button');cl.style.cssText='display:block;margin:0 auto;background:none;border:none;color:#94a3b8;cursor:pointer;font-size:13px';cl.textContent='Nein danke';cl.onclick=function(){S.premModal=false;render();};
+  box.appendChild(b1);box.appendChild(cl);
+  overlay.appendChild(box);overlay.onclick=function(e){if(e.target===overlay){S.premModal=false;render();}};return overlay;
+}
+
+(async function initSession(){
+  if(sb){
+    var s=await sb.auth.getSession();
+    if(s.data.session){
+      var u=s.data.session.user;
+      S.user={id:u.id,name:(u.user_metadata&&u.user_metadata.full_name)||u.email.split('@')[0],email:u.email,bundesland:'',premium:false};
+      S.page='main';
+    }
+  }
+  render();
+})();
+</script>
+</body>
+</html>
