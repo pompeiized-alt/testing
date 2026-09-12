@@ -96,11 +96,17 @@ select.wide-inp{cursor:pointer}
 <div id="app"></div>
 <script src="https://unpkg.com/@supabase/supabase-js@2"></script>
 <script>
-var SUPABASE_URL = 'https://dawhzjvcrjfchjunhpko.supabase.co';
+var SUPABASE_URL = 'https://dawhzjvcrjfchjunhpko.supabase.co/rest/v1/';
 var SUPABASE_ANON_KEY = 'sb_publishable_qt2JYzlYw7F1wLNs9hmrzQ_H_ghYXyU';
-var sb = (SUPABASE_URL.indexOf('PASTE_') === -1)
-  ? window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY)
-  : null;
+var sb = null;
+try{
+  if(SUPABASE_URL.indexOf('PASTE_') === -1 && window.supabase && typeof window.supabase.createClient==='function'){
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+}catch(e){
+  console.warn('Supabase konnte nicht initialisiert werden (evtl. offline oder CDN blockiert):', e);
+  sb = null;
+}
 
 // ==================== STATE ====================
 var S = {
@@ -116,11 +122,35 @@ var S = {
   qIdx:0, qAnswered:false, qSelected:-1, qScore:0,
   qSubFilter:'all', qAfbFilter:'all',
   aiMsgs:[], aiInput:'',
-  premModal:false, profileModal:false, profileTab:'stats',
+  premModal:false, profileModal:false, profileTab:'stats', gradeTableModal:false,
   authMode:'login', search:'',
   streak:12, xp:3480, level:14, targetGrade:1.5,
 };
 
+// ==================== CALC STATE PERSISTENCE ====================
+var CALC_STORAGE_KEY='abiRechnerState_v1';
+function saveCalcState(){
+  try{
+    localStorage.setItem(CALC_STORAGE_KEY, JSON.stringify({
+      calcSubjects:S.calcSubjects, calcExams:S.calcExams,
+      calcSeminarEnabled:S.calcSeminarEnabled, calcSeminar:S.calcSeminar,
+      calcNextId:S.calcNextId
+    }));
+  }catch(e){}
+}
+function loadCalcState(){
+  try{
+    var raw=localStorage.getItem(CALC_STORAGE_KEY);
+    if(!raw)return;
+    var d=JSON.parse(raw);
+    if(d.calcSubjects&&d.calcSubjects.length)S.calcSubjects=d.calcSubjects;
+    if(d.calcExams&&d.calcExams.length)S.calcExams=d.calcExams;
+    if(typeof d.calcSeminarEnabled==='boolean')S.calcSeminarEnabled=d.calcSeminarEnabled;
+    if(d.calcSeminar)S.calcSeminar=d.calcSeminar;
+    if(d.calcNextId)S.calcNextId=d.calcNextId;
+  }catch(e){}
+}
+loadCalcState();
 function initCalcDefaults() {
   if (S.calcSubjects.length === 0) {
     S.calcSubjects = [
@@ -567,11 +597,33 @@ var UNI_SECTIONS = [
 function mk(html) { var d=document.createElement('div'); d.innerHTML=html; return d.firstElementChild||d; }
 function go(page,extra){ S.page=page; if(extra){for(var k in extra)S[k]=extra[k];} render(); }
 function setTab(t){ S.tab=t; render(); }
+function captureFocus(){
+  var el=document.activeElement;
+  if(el&&el.id&&(el.tagName==='INPUT'||el.tagName==='TEXTAREA')){
+    var sel=null;
+    try{ sel={start:el.selectionStart,end:el.selectionEnd}; }catch(e){}
+    return {id:el.id,sel:sel};
+  }
+  return null;
+}
+function restoreFocus(f){
+  if(!f)return;
+  var el=document.getElementById(f.id);
+  if(el){
+    el.focus();
+    if(f.sel&&typeof f.sel.start==='number'&&el.setSelectionRange){
+      try{ el.setSelectionRange(f.sel.start,f.sel.end); }catch(e){}
+    }
+  }
+}
 function render(){
+  var focus=captureFocus();
   var app=document.getElementById('app');
   while(app.firstChild)app.removeChild(app.firstChild);
   document.body.className=S.dark?'dark':'';
   app.appendChild(buildPage());
+  restoreFocus(focus);
+  saveCalcState();
 }
 function buildPage(){
   if(S.page==='landing') return buildLanding();
@@ -615,6 +667,25 @@ function calcBlockII(){
   var total=exams.reduce(function(sum,e){return sum+Math.min(15,Math.max(0,+e.grade))*factor;},0);
   return Math.min(300,total);
 }
+// Offizielle Punkte→Note Umrechnungstabelle (Abiturnote, Numerus Clausus)
+var GRADE_TABLE=[
+  [823,900,'1,0'],[805,822,'1,1'],[787,804,'1,2'],[769,786,'1,3'],[751,768,'1,4'],
+  [733,750,'1,5'],[715,732,'1,6'],[697,714,'1,7'],[679,696,'1,8'],[661,678,'1,9'],
+  [643,660,'2,0'],[625,642,'2,1'],[607,624,'2,2'],[589,606,'2,3'],[571,588,'2,4'],
+  [553,570,'2,5'],[535,552,'2,6'],[517,534,'2,7'],[499,516,'2,8'],[481,498,'2,9'],
+  [463,480,'3,0'],[445,462,'3,1'],[427,444,'3,2'],[409,426,'3,3'],[391,408,'3,4'],
+  [373,390,'3,5'],[355,372,'3,6'],[337,354,'3,7'],[319,336,'3,8'],[301,318,'3,9'],
+  [300,300,'4,0']
+];
+function pointsToGrade(total){
+  var t=Math.round(total);
+  if(t<300) return null;
+  for(var i=0;i<GRADE_TABLE.length;i++){
+    var b=GRADE_TABLE[i];
+    if(t>=b[0]&&t<=b[1]) return b[2];
+  }
+  return null;
+}
 function calcResult(){
   var b1=calcBlockI();
   var semBonus=0;
@@ -625,13 +696,15 @@ function calcResult(){
   var blockII=calcBlockII();
   var total=blockI+blockII;
   if(total<1) return null;
-  var grade=Math.max(1.0,Math.min(4.0,(900-total)/60+1));
+  var passed=total>=300&&blockI>=200&&blockII>=100;
+  var gradeStr=pointsToGrade(total);
+  var gradeDisplay=passed?(gradeStr||'nicht bestanden'):'nicht bestanden';
   var lkCount=S.calcSubjects.filter(function(s){return s.lk;}).length;
   var defizite=0;
   S.calcSubjects.forEach(function(sub){
     sub.grades.forEach(function(g){if(g!==''&&!isNaN(+g)&&+g<5)defizite++;});
   });
-  return {blockI:blockI,blockII:blockII,total:total,grade:grade.toFixed(1).replace('.',','),passed:total>=300&&blockI>=200&&blockII>=100,defizite:defizite,semBonus:semBonus};
+  return {blockI:blockI,blockII:blockII,total:total,grade:gradeDisplay,gradeRaw:gradeStr,passed:passed,defizite:defizite,semBonus:semBonus};
 }
 function getLkDoubledStatus(){
   var count=0;
@@ -805,6 +878,7 @@ function buildMain(){
   wrap.appendChild(buildNav());
   if(S.premModal) wrap.appendChild(buildPremModal());
   if(S.profileModal) wrap.appendChild(buildProfileModal());
+  if(S.gradeTableModal) wrap.appendChild(buildGradeTableModal());
   return wrap;
 }
 
@@ -855,7 +929,18 @@ function buildCalc(){
 
   // Header
   var hdr=document.createElement('div');hdr.style.cssText='background:linear-gradient(135deg,#1e3a8a,#2563eb);color:#fff;border-radius:18px;padding:20px;margin-bottom:14px';
-  hdr.innerHTML='<div style="font-size:11px;opacity:.75;margin-bottom:4px">'+bl+' · '+r.g8g9+'</div><div style="font-size:44px;font-weight:900;line-height:1;margin-bottom:10px">'+(res?res.grade:'–')+'</div>';
+  hdr.innerHTML='<div style="font-size:11px;opacity:.75;margin-bottom:4px">'+bl+' · '+r.g8g9+'</div>';
+  var gradeRow=mk('<div style="display:flex;align-items:baseline;gap:10px;margin-bottom:10px"></div>');
+  var gradeVal=res?res.grade:'–';
+  var gradeFs=(res&&!res.passed)?24:44;
+  gradeRow.appendChild(mk('<div style="font-size:'+gradeFs+'px;font-weight:900;line-height:1">'+gradeVal+'</div>'));
+  var infoBtn=document.createElement('button');
+  infoBtn.title='Punkte-Notentabelle anzeigen';
+  infoBtn.style.cssText='background:rgba(255,255,255,.18);border:none;color:#fff;border-radius:50%;width:22px;height:22px;font-size:12px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0';
+  infoBtn.textContent='ⓘ';
+  infoBtn.onclick=function(){S.gradeTableModal=true;render();};
+  gradeRow.appendChild(infoBtn);
+  hdr.appendChild(gradeRow);
   if(res){
     var blocks=mk('<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:10px"></div>');
     [['Block I',res.blockI+'/600'],['Block II',res.blockII+'/300'],['Gesamt',res.total+'/900']].forEach(function(b){blocks.appendChild(mk('<div style="background:rgba(255,255,255,.12);border-radius:8px;padding:8px;text-align:center"><div style="font-weight:800;font-size:13px">'+b[1]+'</div><div style="font-size:10px;opacity:.75">'+b[0]+'</div></div>'));});
@@ -899,7 +984,8 @@ function buildCalc(){
       // Grade inputs
       for(var q=0;q<4;q++){
         var inp=document.createElement('input');inp.type='number';inp.min='0';inp.max='15';inp.className='grade-inp';inp.value=sub.grades[q];inp.placeholder='–';
-        inp.oninput=(function(s2,qi){return function(e){s2.grades[qi]=e.target.value;};})(sub,q);
+        inp.id='gi-'+sub.id+'-'+q;
+        inp.oninput=(function(s2,qi){return function(e){s2.grades[qi]=e.target.value;render();};})(sub,q);
         row.appendChild(inp);
       }
       // Average
@@ -947,7 +1033,8 @@ function buildCalc(){
             var inp=document.createElement('input');inp.type='number';inp.min='0';inp.max='15';inp.className='grade-inp';inp.style.width='100%';
             var key=['ma1','ma2','schriftl','praes'][fi];
             inp.value=sem[key];inp.placeholder='–';
-            inp.oninput=(function(s,k){return function(e){s[k]=e.target.value;};})(sem,key);
+            inp.id='sm-'+si+'-'+key;
+            inp.oninput=(function(s,k){return function(e){s[k]=e.target.value;render();};})(sem,key);
             fw.appendChild(inp);semGrid.appendChild(fw);
           });
           semCard.appendChild(semGrid);
@@ -971,10 +1058,12 @@ function buildCalc(){
       var wCol=weighted==='–'?'#94a3b8':(+weighted>=40?'#16a34a':(+weighted>=20?'#d97706':'#dc2626'));
       var row=mk('<div class="calc-subject-row" style="margin-bottom:8px"></div>');
       var nameInp=document.createElement('input');nameInp.type='text';nameInp.placeholder='Prüfungsfach '+(ei+1);nameInp.value=exam.name;nameInp.style.cssText='flex:1;border:none;background:transparent;font-size:13px;font-weight:600;outline:none;color:'+(S.dark?'#f1f5f9':'#0f172a');
-      nameInp.oninput=(function(e2){return function(ev){e2.name=ev.target.value;};})(exam);
+      nameInp.id='en-'+exam.id;
+      nameInp.oninput=(function(e2){return function(ev){e2.name=ev.target.value;render();};})(exam);
       row.appendChild(nameInp);
       var gradeInp=document.createElement('input');gradeInp.type='number';gradeInp.min='0';gradeInp.max='15';gradeInp.className='grade-inp';gradeInp.style.width='60px';gradeInp.value=exam.grade;gradeInp.placeholder='–';
-      gradeInp.oninput=(function(e2){return function(ev){e2.grade=ev.target.value;};})(exam);
+      gradeInp.id='eg-'+exam.id;
+      gradeInp.oninput=(function(e2){return function(ev){e2.grade=ev.target.value;render();};})(exam);
       row.appendChild(gradeInp);
       row.appendChild(mk('<div style="width:60px;text-align:center;font-weight:800;font-size:13px;color:'+wCol+'">'+weighted+'</div>'));
       var del=document.createElement('button');del.className='btn-sm btn-red-sm';del.textContent='✕';del.style.width='26px';del.style.padding='4px';
@@ -1297,14 +1386,50 @@ function buildPremModal(){
   overlay.appendChild(box);overlay.onclick=function(e){if(e.target===overlay){S.premModal=false;render();}};return overlay;
 }
 
+function buildGradeTableModal(){
+  var overlay=document.createElement('div');overlay.className='modal-bg';overlay.style.zIndex='200';
+  var box=document.createElement('div');box.className='modal-box';box.style.maxWidth='380px';
+  var hdr=document.createElement('div');hdr.style.cssText='display:flex;justify-content:space-between;align-items:center;margin-bottom:14px';
+  hdr.innerHTML='<h3 style="font-weight:800;font-size:16px;margin:0">📐 Punkte → Note</h3>';
+  var cl=document.createElement('button');cl.style.cssText='background:none;border:none;font-size:20px;cursor:pointer;color:#94a3b8';cl.textContent='✕';cl.onclick=function(){S.gradeTableModal=false;render();};
+  hdr.appendChild(cl);box.appendChild(hdr);
+  box.appendChild(mk('<p style="font-size:12px;color:#64748b;margin:0 0 12px">Gesamtpunktzahl (max. 900) aus Block I + Block II ergibt die Abiturnote (Numerus Clausus).</p>'));
+  var table=document.createElement('table');table.className='formula-table';table.style.width='100%';
+  var thead=mk('<thead><tr><th style="width:60%">Punkte</th><th>Note</th></tr></thead>');table.appendChild(thead);
+  var tbody=document.createElement('tbody');
+  var res=calcResult();
+  GRADE_TABLE.forEach(function(b){
+    var isCurrent=res&&res.passed&&res.gradeRaw===b[2];
+    var range=b[0]===b[1]?(''+b[0]):(b[1]+'–'+b[0]);
+    var tr=document.createElement('tr');
+    if(isCurrent)tr.style.cssText='background:'+(S.dark?'rgba(29,78,216,.35)':'#dbeafe')+';font-weight:800';
+    tr.innerHTML='<td>'+range+'</td><td>'+b[2]+(isCurrent?' ←':'')+'</td>';
+    tbody.appendChild(tr);
+  });
+  var failTr=document.createElement('tr');
+  var failHighlight=res&&!res.passed;
+  if(failHighlight)failTr.style.cssText='background:'+(S.dark?'rgba(220,38,38,.25)':'#fee2e2')+';font-weight:800';
+  failTr.innerHTML='<td>unter 300</td><td>nicht bestanden'+(failHighlight?' ←':'')+'</td>';
+  tbody.appendChild(failTr);
+  table.appendChild(tbody);
+  var scroll=document.createElement('div');scroll.style.cssText='max-height:50vh;overflow-y:auto';scroll.appendChild(table);
+  box.appendChild(scroll);
+  overlay.appendChild(box);overlay.onclick=function(e){if(e.target===overlay){S.gradeTableModal=false;render();}};
+  return overlay;
+}
+
 (async function initSession(){
-  if(sb){
-    var s=await sb.auth.getSession();
-    if(s.data.session){
-      var u=s.data.session.user;
-      S.user={id:u.id,name:(u.user_metadata&&u.user_metadata.full_name)||u.email.split('@')[0],email:u.email,bundesland:'',premium:false};
-      S.page='main';
+  try{
+    if(sb){
+      var s=await sb.auth.getSession();
+      if(s.data.session){
+        var u=s.data.session.user;
+        S.user={id:u.id,name:(u.user_metadata&&u.user_metadata.full_name)||u.email.split('@')[0],email:u.email,bundesland:'',premium:false};
+        S.page='main';
+      }
     }
+  }catch(e){
+    console.warn('Session-Check fehlgeschlagen (evtl. offline):', e);
   }
   render();
 })();
